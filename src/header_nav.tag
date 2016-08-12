@@ -58,14 +58,14 @@
       ul#page_heading.responsive {position: relative;}
       ul#page_heading.responsive li.c-nav__item {
         float: none;
-        display: inline;
+        display: block;
       }
       ul#page_heading.responsive li.c-nav__item a {
         display: block;
         text-align: left;
-        padding-left:16px;
+        margin-left:16px;
       }
-      ul#page_heading.responsive li:hover{
+      ul#page_heading.responsive li.c-nav__item:hover{
         display:block;
       }
     }
