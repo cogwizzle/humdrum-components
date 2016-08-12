@@ -4,28 +4,20 @@
     <li class="icon">
       <a href="javascript:void(0);" onclick={ toggleResponsive }>&#9776;</a>
     </li>
+    <li each="{opts.links}" class="c-nav__item c-nav__item--right"><a href="{uri}">{text}</a></li>
   </ul>
-  <ul class="topnav" id="myTopnav">
-    <li></li>
-    <li each="{opts.links}"><a href="{uri}">{text}</a></li>
-  </ul>
-  
   <style>
-    ul#page_heading{
-      background-color:#212121;
-      font-size: 24px;
-    }
-
     body {margin:0;}
-    ul.topnav {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #212121;
+   
+    ul#page_heading #page_heading_text{
+      font-weight:bold;
     }
     
-    ul.topnav li {float: left;}
+    ul#page_heading li.icon {
+      vertical-align:center;
+      text-align:center;
+      
+    }
     
     ul.topnav li a {
       display: inline-block;
@@ -38,23 +30,20 @@
     }
     
     ul#page_heading li a{
-      display: inline-block;
       color: #f2f2f2;
       text-align: center;
-      padding: 14px 16px;
       text-decoration: none;
       transition: 0.3s;
-      font-size: 30px;
     }
   
-    ul.topnav li a:hover {background-color: #555;}
     
     ul#page_heading li.icon {
       display: none;
+      padding: 16px;
     }
   
     @media screen and (max-width:680px) {
-      ul.topnav li:not(:first-child) {display: none;}
+      ul#page_heading li.c-nav__item {display: none;}
       ul#page_heading li.icon {
         float: right;
         display: inline-block;
@@ -62,14 +51,19 @@
     }
     
     @media screen and (max-width:680px) {
-      ul.topnav.responsive {position: relative;}
-      ul.topnav.responsive li {
+      ul#page_heading.responsive {position: relative;}
+      ul#page_heading.responsive li.c-nav__item {
         float: none;
         display: inline;
       }
-      ul.topnav.responsive li a {
+      ul#page_heading.responsive li.c-nav__item a {
         display: block;
         text-align: left;
+        padding-left:16px;
+      }
+      ul#page_heading.responsive li:hover{
+        display:block;
+        z-index:100;
       }
     }
   </style>
@@ -78,13 +72,7 @@
   <script>
     /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
     toggleResponsive() {
-      var nav = this.myTopnav;
       var titleBar = this.page_heading;
-      if (nav.className === "topnav") {
-          nav.className += " responsive";
-      } else {
-          nav.className = "topnav";
-      }
       
       if (titleBar.className === "c-nav c-nav--inline") {
           titleBar.className += " responsive";
