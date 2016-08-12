@@ -41,6 +41,10 @@
       display: none;
       padding: 16px;
     }
+    
+    ul#page_heading{
+      z-index:100;
+    }
   
     @media screen and (max-width:680px) {
       ul#page_heading li.c-nav__item {display: none;}
@@ -63,7 +67,6 @@
       }
       ul#page_heading.responsive li:hover{
         display:block;
-        z-index:100;
       }
     }
   </style>
