@@ -4,7 +4,7 @@
     <li class="icon">
       <a href="javascript:void(0);" onclick={ toggleResponsive }>&#9776;</a>
     </li>
-    <li each="{opts.links}" class="c-nav__item c-nav__item--right"><a href="{uri}">{text}</a></li>
+    <li each="{opts.links}" class="c-nav__item c-nav__item--right" uri="{uri}" onclick="{goto}">{text}</li>
   </ul>
   <style>
     body {margin:0;}
@@ -29,11 +29,17 @@
       font-size: 17px;
     }
     
+    ul#page_heading li{
+      position:relative;
+    }
+    
     ul#page_heading li a{
       color: #f2f2f2;
       text-align: center;
       text-decoration: none;
       transition: 0.3s;
+      height:100%;
+      display:block;
     }
   
     
@@ -82,6 +88,12 @@
       } else {
           titleBar.className = "c-nav c-nav--inline";
       }
+    }
+    
+    /** Go to page. */
+    goto(event){
+      var uri = event.target.getAttribute('uri');
+      window.location.href = uri;
     }
   </script>
 </header_nav>
