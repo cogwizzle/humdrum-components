@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo page</title>
+  </head>
+  
+  <link rel="stylesheet" href="../../bower_components/blaze/dist/blaze.min.css" />
+  <body>
+    <header_nav></header_nav>
+    <list_builder></list_builder>
+  
+  </body>
+  <footer>
+    <script type="text/javascript" src="../../bower_components/riot/riot.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/riot/riot+compiler.min.js"></script>
+    <script type="riot/tag" src="../../src/header_nav.tag"></script>
+    <script type="riot/tag" src="../../src/list_builder.tag"></script>
+    
+    <script>
+    var listTag;
+    // Good to know, compile if you want mounting to return tag
+    riot.compile(function() {
+      // Mount the element to the page.
+      riot.mount('header_nav',{
+        page_heading : "DEMO",  // The title of the page
+        links : [
+          {"uri" : "http://www.google.com", "text" : "The Google"}, // Navigation links that will appear on the page.
+          {"uri" : "http://www.yahoo.com", "text" : "Yahoo!"}
+        ]
+      });
+      listTag = riot.mount('list_builder', {
+        selectedValues : [{"value" : "1", "display" : "selected"}],
+        unselectedValues : [{"value" : "2", "display" : "not selected"}]
+      })[0];
+      
+      console.log(listTag.value);
+    });
+  </script>
+  </footer>
+</html>
