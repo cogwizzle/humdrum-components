@@ -2,7 +2,7 @@
   <div class="o-grid">
     <div class="o-grid__cell">
       <select id="selectedValues" class="list" multiple>
-        <option each="{opts.selectedValues}" value="{value}">{display}</option>
+        <option each="{selectedValues}" value="{value}">{display}</option>
       </select>
     </div>
     <div class="o-grid__cell o-grid__cell--width-10">
