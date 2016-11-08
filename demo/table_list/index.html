@@ -19,6 +19,11 @@
     
     <script>
     var listTag;
+
+    function clickEvent(event){
+      alert(event.item.row.uri);
+    }
+
     // Good to know, compile if you want mounting to return tag
     riot.compile(function() {
       // Mount the element to the page.
@@ -33,7 +38,8 @@
         data : [
           {"uri" : "http://www.google.com", "text" : "The Google"},
           {"uri" : "http://www.yahoo.com", "text" : "Yahoo!", "test" : "test"}
-        ]
+        ],
+        rowClick : clickEvent
       });
     });
   </script>
