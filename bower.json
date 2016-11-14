@@ -1,0 +1,24 @@
+{
+  "name": "Humdrum Components",
+  "homepage": "https://github.com/jfehrman/humdrum-components",
+  "authors": [
+    "Joe <joseph.fehrman@gmail.com>"
+  ],
+  "description": "Series of riot components that make building sites easier.",
+  "main": "",
+  "keywords": [
+    "Riotjs",
+    "Components",
+    "Web",
+    "Javascript",
+    "Header",
+    "List",
+    "Table"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "blaze": "blazecss#^2.12.0",
+    "riot": "riotjs#^2.5.0",
+    "qunit": "^2.0.1"
+  }
+}
