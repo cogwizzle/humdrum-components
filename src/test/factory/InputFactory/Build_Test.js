@@ -1,5 +1,6 @@
 /**
   Test and documents InputFactory.
+  // TODO Rewrite test to reflect changes in code.
 
   @author Joe Fehrman
   @since 11/12/2016

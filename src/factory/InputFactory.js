@@ -24,23 +24,17 @@ var InputFactory = function(){
     var element = undefined;
     switch(inputDescription.type.toLowerCase()){
       case "text":
-        element = document.createElement("input");
-        element.setAttribute("type", "text");
-        element = addDefaults(element, inputDescription.id);
-        return element;
+        return new TextField(inputDescription);
         break;
       case "textarea":
-        element = document.createElement("textarea");
-        element = addDefaults(element, inputDescription.id);
-        return element;
+        return new TextAreaField(inputDescription);
         break;
       case "password":
-        element = document.createElement("input");
-        element.setAttribute("type", "password");
-        element = addDefaults(element, inputDescription.id);
-        return element;
+        return new PasswordField(inputDescription);
+        break;
       case "checkbox":
-        element = document.createElement("span");
+        // TODO Replace with form_element.
+        /*element = document.createElement("span");
         element.setAttribute("id", inputDescription.id);
         element.classList.add("cb_container");
         for(var i = 0; i < inputDescription.values.length; i++){
@@ -52,7 +46,29 @@ var InputFactory = function(){
           check.appendChild(checkLabel);
           element.appendChild(check);
         }
-        return element;
+        return element;*/
+        break;
+      case "select":
+        // TODO Replace with form_element.
+        /**
+        element = document.createElement("span");
+        var select = document.createElement("select");
+        var label = document.createElement("label");
+        var textLabel = document.createTextNode(inputDescription.label);
+        for(var i = 0; i < inputDescription.values.length; i++){
+          var val = inputDescription.values[i];
+          var option = document.createElement("option");
+          option.setAttribute("value", val.value);
+          var optionText = document.createTextNode(val.label);
+          option.appendChid(optionText);
+          select.appendChild(option);
+        }
+        label.appendChild("for", inputDescription.id);
+        select = addDefaults(select, inputDescription.id);
+        element.appendChild(label);
+        element.appendChild(select);
+        return element;*/
+        break;
       default:
         console.error("Unable to create an element.");
         break;
