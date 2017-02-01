@@ -33,20 +33,7 @@ var InputFactory = function(){
         return new PasswordField(inputDescription);
         break;
       case "checkbox":
-        // TODO Replace with form_element.
-        /*element = document.createElement("span");
-        element.setAttribute("id", inputDescription.id);
-        element.classList.add("cb_container");
-        for(var i = 0; i < inputDescription.values.length; i++){
-          var val = inputDescription.values[i];
-          var check = document.createElement("input");
-          check.setAttribute("name", inputDescription.id);
-          check.setAttribute("type", "checkbox");
-          var checkLabel = document.createTextNode(val);
-          check.appendChild(checkLabel);
-          element.appendChild(check);
-        }
-        return element;*/
+        return new CheckField(inputDescription);
         break;
       case "select":
         // TODO Replace with form_element.
