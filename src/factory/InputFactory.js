@@ -36,25 +36,7 @@ var InputFactory = function(){
         return new CheckField(inputDescription);
         break;
       case "select":
-        // TODO Replace with form_element.
-        /**
-        element = document.createElement("span");
-        var select = document.createElement("select");
-        var label = document.createElement("label");
-        var textLabel = document.createTextNode(inputDescription.label);
-        for(var i = 0; i < inputDescription.values.length; i++){
-          var val = inputDescription.values[i];
-          var option = document.createElement("option");
-          option.setAttribute("value", val.value);
-          var optionText = document.createTextNode(val.label);
-          option.appendChid(optionText);
-          select.appendChild(option);
-        }
-        label.appendChild("for", inputDescription.id);
-        select = addDefaults(select, inputDescription.id);
-        element.appendChild(label);
-        element.appendChild(select);
-        return element;*/
+        return new SelectField(inputDescription);
         break;
       default:
         console.error("Unable to create an element.");
