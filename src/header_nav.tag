@@ -1,5 +1,5 @@
 <header_nav>
-  <ul id="page_heading" class="c-nav c-nav--inline">
+  <ul ref="page_heading" id="page_heading" class="c-nav c-nav--inline">
     <li id="page_heading_text" class="c-nav__content">{opts.page_heading}</li>
     <li class="icon">
       <a href="javascript:void(0);" onclick={ toggleResponsive }>&#9776;</a>
@@ -81,9 +81,9 @@
   <script>
     /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
     toggleResponsive() {
-      var titleBar = this.page_heading;
+      var titleBar = this.refs.page_heading;
       
-      if (titleBar.className === "c-nav c-nav--inline") {
+      if (titleBar.className == "c-nav c-nav--inline") {
           titleBar.className += " responsive";
       } else {
           titleBar.className = "c-nav c-nav--inline";

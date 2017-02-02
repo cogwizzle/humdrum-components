@@ -1,34 +1,48 @@
-<string>
-  <input type="text" id="{opts.id}" name="{opts.id}" />
-</string>
-
-<number>
-  <input type="number" id="{opts.id}" name="{opts.id}" />
-</number>
-
-<big_string>
-  <textarea id="{opts.id}" name="{opts.id}"></textarea>
-</big_string>
-
-<check>
-  <span each={val in opts.values}>
-    <input type="checkbox" id="{opts.id}" name="{opts.id}" value="{val}" />
-  </span>
-</check>
-
-<sel>
-  <select id="{opts.id"} name="{opts.id}">
-    <option each={val in opts.values} value="{val.value}">{val.name}</option>
-  </select>
-</sel>
-
 <dynamic_form>
   <form class="dynamic_form">
     <span each={inp in inputs}>
-      <raw content="{inp}" />
+      <raw content="{inp.outerHTML}" />
     </span>
   </form>
   <script>
-    
+  this.inputs = [];
+  this.on('before-mount', function(){
+      var descriptions = opts.inputDescriptions;
+      var factory = new InputFactory();
+      for(var i = 0, length = descriptions.length; i < length; i++){
+        this.inputs.push(factory.build(descriptions[i]));
+      }
+   });
   </script>
-</form>
+<style>
+.dynamic_check, .dynamic_select, .dynamic_textarea, .dynamic_text, .dynamic_password{
+display : block;
+  }
+
+
+.dynamic_check label, .dynamic_select label, .dynamic_textarea label, .dynamic_text label, .dynamic_password label, .dynamic_check input, .dynamic_select select, .dynamic_textarea textarea, .dynamic_text input, .dynamic_password input{
+display : inline-block;
+}
+
+.dynamic_check span, .dynamic_select select, .dynamic_textarea textarea, .dynamic_text input, .dynamic_password input{
+  width : 50vw;
+  min-width: 400px;
+}
+
+.dynamic_check label, .dynamic_select label, .dynamic_textarea label, .dynamic_text label, .dynamic_password label{
+  width: 20vw;
+}
+
+.dynamic_check input{
+  margin-left: 20px;
+}
+</style>
+</dynamic_form>
+
+<raw>
+  <span></span>
+
+  <script>
+    this.root.innerHTML = opts.content;
+  </script>
+</raw>

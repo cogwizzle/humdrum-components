@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "blaze": "blazecss#^2.12.0",
-    "riot": "riotjs#^2.5.0",
+    "riot": "^3.1.0",
     "qunit": "^2.0.1"
   }
 }

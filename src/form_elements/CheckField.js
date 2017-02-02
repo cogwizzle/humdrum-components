@@ -50,10 +50,9 @@ var CheckField = function(inputDescription){
       input.setAttribute("type", "checkbox");
       input.setAttribute("name", id);
       input.setAttribute("value", item.value);
-      input.classList.add("c-field");
       var textNode = document.createTextNode(item.label);
-      input.appendChild(textNode);
       wrapper.appendChild(input);
+      wrapper.appendChild(textNode);
     }
     return wrapper;
   }
