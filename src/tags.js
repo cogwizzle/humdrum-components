@@ -1,12 +1,17 @@
-riot.tag2('dynamic_form', '<form class="dynamic_form"> <span each="{inp in inputs}"> <raw content="{inp.outerHTML}"></raw> </span> </form>', 'dynamic_form .dynamic_check,[data-is="dynamic_form"] .dynamic_check,dynamic_form .dynamic_select,[data-is="dynamic_form"] .dynamic_select,dynamic_form .dynamic_textarea,[data-is="dynamic_form"] .dynamic_textarea,dynamic_form .dynamic_text,[data-is="dynamic_form"] .dynamic_text,dynamic_form .dynamic_password,[data-is="dynamic_form"] .dynamic_password{ display : block; } dynamic_form .dynamic_check label,[data-is="dynamic_form"] .dynamic_check label,dynamic_form .dynamic_select label,[data-is="dynamic_form"] .dynamic_select label,dynamic_form .dynamic_textarea label,[data-is="dynamic_form"] .dynamic_textarea label,dynamic_form .dynamic_text label,[data-is="dynamic_form"] .dynamic_text label,dynamic_form .dynamic_password label,[data-is="dynamic_form"] .dynamic_password label,dynamic_form .dynamic_check input,[data-is="dynamic_form"] .dynamic_check input,dynamic_form .dynamic_select select,[data-is="dynamic_form"] .dynamic_select select,dynamic_form .dynamic_textarea textarea,[data-is="dynamic_form"] .dynamic_textarea textarea,dynamic_form .dynamic_text input,[data-is="dynamic_form"] .dynamic_text input,dynamic_form .dynamic_password input,[data-is="dynamic_form"] .dynamic_password input{ display : inline-block; } dynamic_form .dynamic_check span,[data-is="dynamic_form"] .dynamic_check span,dynamic_form .dynamic_select select,[data-is="dynamic_form"] .dynamic_select select,dynamic_form .dynamic_textarea textarea,[data-is="dynamic_form"] .dynamic_textarea textarea,dynamic_form .dynamic_text input,[data-is="dynamic_form"] .dynamic_text input,dynamic_form .dynamic_password input,[data-is="dynamic_form"] .dynamic_password input{ width : 50vw; min-width: 400px; } dynamic_form .dynamic_check label,[data-is="dynamic_form"] .dynamic_check label,dynamic_form .dynamic_select label,[data-is="dynamic_form"] .dynamic_select label,dynamic_form .dynamic_textarea label,[data-is="dynamic_form"] .dynamic_textarea label,dynamic_form .dynamic_text label,[data-is="dynamic_form"] .dynamic_text label,dynamic_form .dynamic_password label,[data-is="dynamic_form"] .dynamic_password label{ width: 20vw; } dynamic_form .dynamic_check input,[data-is="dynamic_form"] .dynamic_check input{ margin-left: 20px; }', '', function(opts) {
+riot.tag2('dynamic_form', '<form class="dynamic_form" ref="{id}" id="{id}" action="{action}" method="{method}"> <span each="{inp in inputs}"> <raw content="{inp.outerHTML}"></raw> </span> <button type="submit" if="{submit}">Submit</button> </form>', 'dynamic_form .dynamic_check input,[data-is="dynamic_form"] .dynamic_check input{ margin-left: 20px; } dynamic_form span.o-grid,[data-is="dynamic_form"] span.o-grid{ padding-bottom:20px; } dynamic_form span.o-grid:last,[data-is="dynamic_form"] span.o-grid:last{ padding-bottom:0px; }', '', function(opts) {
   this.inputs = [];
   this.on('before-mount', function(){
-      var descriptions = opts.inputDescriptions;
-      var factory = new InputFactory();
-      for(var i = 0, length = descriptions.length; i < length; i++){
-        this.inputs.push(factory.build(descriptions[i]));
-      }
-   });
+    var descriptions = opts.inputDescriptions;
+    var factory = new InputFactory();
+    for(var i = 0, length = descriptions.length; i < length; i++){
+      this.inputs.push(factory.build(descriptions[i]));
+    }
+  });
+
+  this.id = opts.id;
+  this.method = opts.method;
+  this.action = opts.action;
+  this.submit = opts.submit;
 });
 
 riot.tag2('raw', '<span></span>', '', '', function(opts) {
