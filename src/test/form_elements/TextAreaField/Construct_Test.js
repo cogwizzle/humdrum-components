@@ -15,7 +15,7 @@ QUnit.test("TextAreaField shall construct a span a label and an input field.", f
   };
   var html = new TextAreaField(inputDescription);
   var spanClass = html.className;
-  var expectedSpanClass = "dynamic_textarea";
+  var expectedSpanClass = "dynamic_textarea o-grid";
   assert.equal(spanClass, expectedSpanClass);
   var label = html.querySelector("label");
   var labelFor = label.getAttribute("for");

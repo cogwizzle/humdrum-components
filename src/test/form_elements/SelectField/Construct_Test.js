@@ -19,7 +19,7 @@ QUnit.test("SelectField shall construct a selectbox and options.", function(asse
   };
   var html = new SelectField(inputDescription);
   var selectClass = html.className;
-  var expectedSelectClass = "dynamic_select";
+  var expectedSelectClass = "dynamic_select o-grid";
   assert.equal(selectClass, expectedSelectClass);
   var label = html.querySelector("label");
   var labelFor = label.getAttribute("for");

@@ -15,7 +15,7 @@ QUnit.test("PasswordField shall construct a span a label and an input field.", f
   };
   var html = new PasswordField(inputDescription);
   var spanClass = html.className;
-  var expectedSpanClass = "dynamic_password";
+  var expectedSpanClass = "dynamic_password o-grid";
   assert.equal(spanClass, expectedSpanClass);
   var label = html.querySelector("label");
   var labelFor = label.getAttribute("for");

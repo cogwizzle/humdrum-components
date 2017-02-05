@@ -15,7 +15,7 @@ QUnit.test("TextField shall construct a span a label and an input field.", funct
   };
   var html = new TextField(inputDescription);
   var spanClass = html.className;
-  var expectedSpanClass = "dynamic_text";
+  var expectedSpanClass = "dynamic_text o-grid";
   assert.equal(spanClass, expectedSpanClass);
   var label = html.querySelector("label");
   var labelFor = label.getAttribute("for");

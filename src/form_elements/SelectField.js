@@ -5,37 +5,25 @@
   @since 01/02/2017
 */
 var SelectField = function(inputDescription){
+  extend(this, AbstractField);
+  var createWrapperSpan = this.createWrapperSpan;
+  var createLabel = this.createLabel;
+  var createWrapperGrid = this.createWrapperGrid;
+  var specialClass = "dynamic_select";
 
   /** Default constructor. */
   function __construct(inputDescription){
-    var wrapper = createWrapperSpan();
+    var wrapper = createWrapperSpan(specialClass);
     var label = createLabel(inputDescription.id, inputDescription.label);
     var element = createElements(inputDescription.id, inputDescription.values, inputDescription.multiple);
-    wrapper.appendChild(label);
-    wrapper.appendChild(element);
+    var labelGrid = createWrapperGrid();
+    labelGrid.classList.add("o-grid__cell--width-20");
+    var inputGrid = createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
     return wrapper;
-  }
-
-  /** Create a wrapper element. */
-  function createWrapperSpan(){
-    var wrapper = document.createElement("span");
-    wrapper.classList.add("dynamic_select");
-    return wrapper;
-  }
-
-  /**
-    Create a label.
-
-    @param id Id of the input.
-    @param labelText Label test show in display.
-    @return Label element.
-  */
-  function createLabel(id, labelText){
-    var label = document.createElement("label");
-    label.setAttribute("for", id);
-    var textNode = document.createTextNode(labelText);
-    label.appendChild(textNode);
-    return label;
   }
 
   /**
