@@ -7,13 +7,11 @@
   </form>
   <script>
   this.inputs = [];
-  this.on('before-mount', function(){
-    var descriptions = opts.inputDescriptions;
-    var factory = new InputFactory();
-    for(var i = 0, length = descriptions.length; i < length; i++){
-      this.inputs.push(factory.build(descriptions[i]));
-    }
-  });
+  var descriptions = opts.inputDescriptions;
+  var factory = new InputFactory();
+  for(var i = 0, length = descriptions.length; i < length; i++){
+    this.inputs.push(factory.build(descriptions[i]));
+  }
 
   this.id = opts.id;
   this.method = opts.method;
