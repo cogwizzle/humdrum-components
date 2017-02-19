@@ -1,12 +1,10 @@
 riot.tag2('dynamic_form', '<form class="dynamic_form" ref="{id}" id="{id}" action="{action}" method="{method}"> <span each="{inp in inputs}"> <raw content="{inp.outerHTML}"></raw> </span> <button type="submit" if="{submit}">Submit</button> </form>', 'dynamic_form .dynamic_check input,[data-is="dynamic_form"] .dynamic_check input{ margin-left: 20px; } dynamic_form span.o-grid,[data-is="dynamic_form"] span.o-grid{ padding-bottom:20px; } dynamic_form span.o-grid:last,[data-is="dynamic_form"] span.o-grid:last{ padding-bottom:0px; }', '', function(opts) {
   this.inputs = [];
-  this.on('before-mount', function(){
-    var descriptions = opts.inputDescriptions;
-    var factory = new InputFactory();
-    for(var i = 0, length = descriptions.length; i < length; i++){
-      this.inputs.push(factory.build(descriptions[i]));
-    }
-  });
+  var descriptions = opts.inputDescriptions;
+  var factory = new InputFactory();
+  for(var i = 0, length = descriptions.length; i < length; i++){
+    this.inputs.push(factory.build(descriptions[i]));
+  }
 
   this.id = opts.id;
   this.method = opts.method;
