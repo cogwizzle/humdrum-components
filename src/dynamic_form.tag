@@ -7,7 +7,7 @@
   </form>
   <script>
   this.inputs = [];
-  var descriptions = opts.inputDescriptions;
+  var descriptions = opts.input_descriptions;
   var factory = new InputFactory();
   for(var i = 0, length = descriptions.length; i < length; i++){
     this.inputs.push(factory.build(descriptions[i]));
