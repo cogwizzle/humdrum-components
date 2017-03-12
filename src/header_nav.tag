@@ -94,6 +94,7 @@
     goto(event){
       var uri = event.target.getAttribute('uri');
       window.location.href = uri;
+      this.toggleResponsive();
     }
   </script>
 </header_nav>
