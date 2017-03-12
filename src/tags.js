@@ -31,6 +31,7 @@ riot.tag2('header_nav', '<ul ref="page_heading" id="page_heading" class="c-nav c
     this.goto = function(event){
       var uri = event.target.getAttribute('uri');
       window.location.href = uri;
+      this.toggleResponsive();
     }.bind(this)
 });
 
