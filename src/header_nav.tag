@@ -1,10 +1,12 @@
 <header_nav>
   <ul ref="page_heading" id="page_heading" class="c-nav c-nav--inline">
     <li id="page_heading_text" class="c-nav__content">{opts.page_heading}</li>
-    <li class="icon">
-      <a href="javascript:void(0);" onclick={ toggleResponsive }>&#9776;</a>
-    </li>
-    <li each="{opts.links}" class="c-nav__item c-nav__item--right" uri="{uri}" onclick="{goto}">{text}</li>
+    <span class="navspan" if="{opts.links}">
+      <li class="icon">
+        <a href="javascript:void(0);" onclick={ toggleResponsive }>&#9776;</a>
+      </li>
+      <li each="{opts.links}" class="c-nav__item c-nav__item--right" uri="{uri}" onclick="{goto}">{text}</li>
+    </span>
   </ul>
   <style>
     body {margin:0;}
