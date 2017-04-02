@@ -17,7 +17,7 @@ riot.tag2('raw', '<span></span>', '', '', function(opts) {
 });
 
 riot.tag2('floating_action_button', '<div class="floating_popout bottom-right"> <div class="floating_action_button" onclick="{actionEvent}" riot-style="background-color:{bgColor}"> <i class="icon {iconClass}"></i> </div> </div>', 'floating_action_button .floating_action_button,[data-is="floating_action_button"] .floating_action_button{ display : inline-block; position : relative; outline : none; -webkit-user-select : none; user-select : none; cursor : pointer; width : 60px; height : 60px; line-height : 60px; text-align : center; font-size : 32px; z-index : 999; color : #FFFFFF; border-radius : 50%; box-shadow : 0 0 5px rgba(0,0,0,0.15); transition : 0.2s opacity ease-in-out; -webkit-transition : 0.2s opacity ease-in-out; } floating_action_button .bottom-right,[data-is="floating_action_button"] .bottom-right{ position : fixed; bottom : 3rem; right : 3rem; }', '', function(opts) {
-    actionEvent = opts.onclick;
+    actionEvent = opts.click;
     bgColor = "black";
     if(opts.background_color){
       bgColor = opts.background_color;

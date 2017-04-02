@@ -6,7 +6,7 @@
   </div>
   
   <script>
-    actionEvent = opts.onclick;
+    actionEvent = opts.click;
     bgColor = "black";
     if(opts.background_color){
       bgColor = opts.background_color;
