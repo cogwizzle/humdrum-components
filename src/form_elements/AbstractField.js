@@ -30,6 +30,9 @@ var AbstractField = (function(inputDescription){
     label.setAttribute("for", id);
     var textNode = document.createTextNode(labelText);
     label.appendChild(textNode);
+    label.classList.add("o-grid-small--fit");
+    label.classList.add("o-grid--medium-fit");
+    label.classList.add("o-grid--large-fit");
     return label;
   }
 

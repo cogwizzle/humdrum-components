@@ -18,7 +18,8 @@ var CheckField = function(inputDescription){
     var label = createLabel(inputDescription.id, inputDescription.label);
     var element = createElements(inputDescription.id, inputDescription.values);
     var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("o-grid__cell--width-20");
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
     var inputGrid = createWrapperGrid();
     labelGrid.appendChild(label);
     inputGrid.appendChild(element);

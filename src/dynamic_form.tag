@@ -30,6 +30,11 @@ span.o-grid{
 span.o-grid:last{
   padding-bottom:0px;
 }
+
+div.o-grid__cell.label{
+  width : 100%;
+  text-align : right;
+}
 </style>
 </dynamic_form>
 
