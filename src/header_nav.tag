@@ -8,23 +8,25 @@
     </span>
   </ul>
   <style>
-    body {margin:0;}
+    body {
+      margin:0;
+    }
 
     ul#page_heading #page_heading_text{
-      font-weight:bold;
+      font-weight: bold;
     }
 
     ul#page_heading li.icon {
-      vertical-align:center;
-      text-align:center;
+      vertical-align: center;
+      text-align: center;
     }
 
     ul#page_heading li{
-      position:relative;
+      position: relative;
       color: #f2f2f2;
       text-decoration: none;
       transition: 0.3s;
-      height:100%;
+      height: 100%;
     }
 
     ul#page_heading li.icon {
@@ -37,33 +39,39 @@
     }
 
     @media screen and (max-width:680px) {
-      ul#page_heading li.c-nav__item--right {display: none;}
+      ul#page_heading li.c-nav__item--right {
+        display: none;
+      }
       ul#page_heading li.icon {
         display: inline-block;
       }
-    }
-
-    @media screen and (max-width:680px) {
-      ul#page_heading.responsive {position: relative;}
       ul#page_heading.responsive li.c-nav__item {
         float: none;
         display: block;
       }
-      ul#page_heading.responsive li.c-nav__item a {
-        display: block;
-        text-align: left;
-        margin-left:16px;
-      }
       ul#page_heading.responsive li.c-nav__item:hover{
-        display:block;
+        display: block;
       }
     }
   </style>
 
   <script>
-    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    let _component = this;
+
+    /**
+     * Window resize event to close the navigation menu.
+     */
+    window.addEventListener('resize', function() {
+      var titleBar = _component.refs.page_heading;
+
+      titleBar.className = "c-nav c-nav--inline";
+    });
+
+    /**
+     * Toggle between adding and removing the "responsive" class to topnav.
+     */
     toggleResponsive() {
-      var titleBar = this.refs.page_heading;
+      var titleBar = _component.refs.page_heading;
 
       if (titleBar.className == "c-nav c-nav--inline") {
           titleBar.className += " responsive";
@@ -72,11 +80,13 @@
       }
     }
 
-    /** Go to page. */
+    /**
+     * Go to event, used for redirecting to a page.
+     */
     goto(event){
       var uri = event.target.getAttribute('uri');
       window.location.href = uri;
-      this.toggleResponsive();
+      _component.toggleResponsive();
     }
   </script>
 </header_nav>
