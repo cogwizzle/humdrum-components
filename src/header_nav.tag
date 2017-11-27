@@ -1,6 +1,6 @@
 <header_nav>
   <ul ref="page_heading" id="page_heading" class="c-nav c-nav--inline">
-    <yield ref="brand" />
+    <yield />
     <li id="page_heading_text" class="c-nav__content" if="{opts.page_heading}">{opts.page_heading}</li>
     <span class="navspan" if="{opts.links}">
       <li class="icon c-nav__item--right" onclick={ toggleResponsive }>&#9776;</li>
@@ -21,12 +21,26 @@
       text-align: center;
     }
 
-    ul#page_heading li{
-      position: relative;
+    ul.topnav li a {
+      display: inline-block;
       color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
       text-decoration: none;
       transition: 0.3s;
-      height: 100%;
+      font-size: 17px;
+    }
+
+    ul#page_heading li{
+      position:relative;
+    }
+
+    ul#page_heading li a{
+      color: #f2f2f2;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.3s;
+      height:100%;
     }
 
     ul#page_heading li.icon {
@@ -45,12 +59,20 @@
       ul#page_heading li.icon {
         display: inline-block;
       }
+      ul#page_heading.responsive {
+        position: relative;
+      }
       ul#page_heading.responsive li.c-nav__item {
         float: none;
         display: block;
       }
-      ul#page_heading.responsive li.c-nav__item:hover{
+      ul#page_heading.responsive li.c-nav__item a {
         display: block;
+        text-align: left;
+        margin-left:16px;
+      }
+      ul#page_heading.responsive li.c-nav__item:hover{
+        display:block;
       }
     }
   </style>
