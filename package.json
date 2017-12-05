@@ -1,0 +1,39 @@
+{
+  "name": "humdrum-components",
+  "version": "2.0.0",
+  "description": "Basic Riot Web components used for building web pages.",
+  "main": "dist/humdrum_components.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfehrman/humdrum-components.git"
+  },
+  "keywords": [
+    "riot",
+    "web",
+    "components",
+    "javascript",
+    "es6",
+    "jsx",
+    "reactlike",
+    "riotjs",
+    "js",
+    "custom",
+    "tags"
+  ],
+  "author": "Joseph Fehrman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jfehrman/humdrum-components/issues"
+  },
+  "homepage": "https://github.com/jfehrman/humdrum-components#readme",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "blaze": "^3.6.3",
+    "riot": "^3.7.4"
+  }
+}
