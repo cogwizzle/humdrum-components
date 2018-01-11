@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/jfehrman/humdrum-components#readme",
   "devDependencies": {
+    "babel-preset-es2015-riot": "^1.1.0",
     "jest": "^21.2.1"
   },
   "dependencies": {
