@@ -30,11 +30,20 @@
   },
   "homepage": "https://github.com/jfehrman/humdrum-components#readme",
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015-riot": "^1.1.0",
-    "jest": "^21.2.1"
+    "css-loader": "^0.28.8",
+    "file-loader": "^1.1.6",
+    "jest": "^21.2.1",
+    "riot": "^3.8.1",
+    "riot-tag-loader": "^2.0.2",
+    "style-loader": "^0.19.1"
   },
   "dependencies": {
     "blaze": "^3.6.3",
-    "riot": "^3.7.4"
+    "riot": "^3.8.1",
+    "webpack": "^3.10.0"
   }
 }

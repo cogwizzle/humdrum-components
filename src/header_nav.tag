@@ -92,7 +92,7 @@
     /**
      * Toggle between adding and removing the "responsive" class to topnav.
      */
-    toggleResponsive() {
+    _component.toggleResponsive = function() {
       var titleBar = _component.refs.page_heading;
 
       if (titleBar.className == "c-nav c-nav--inline") {
@@ -105,7 +105,7 @@
     /**
      * Go to event, used for redirecting to a page.
      */
-    goto(event){
+    _component.goto = function(event) {
       var uri = event.target.getAttribute('uri');
       window.location.href = uri;
       _component.toggleResponsive();
