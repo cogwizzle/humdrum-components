@@ -7,10 +7,10 @@
     </div>
     <div class="o-grid__cell o-grid__cell--width-10">
       <ul id="list_builder_controls">
-        <li><button id="removeAll" onClick="{removeAll}">>></button></li>
-        <li><button id="remove" onClick="{remove}">-></button></li>
-        <li><button id="add" onClick="{add}"><-</button></li>
-        <li><button id="addAll" onClick="{addAll}"><<</button></li>
+        <li><button id="removeAll" onClick="{removeAll}"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
+        <li><button id="remove" onClick="{remove}"><i class="fa fa-play" aria-hidden="true"></i></button></li>
+        <li><button id="add" onClick="{add}"><i class="fa fa-play fa-flip-horizontal" aria-hidden="true"></i></button></li>
+        <li><button id="addAll" onClick="{addAll}"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
       </ul>
     </div>
     <div class="o-grid__cell">
@@ -21,12 +21,15 @@
   </div>
   
   <script>
-    var $this = this;
+    import 'blaze/dist/blaze.min.css';
+    import 'font-awesome/css/font-awesome.min.css';
+
+    var component = this;
     this.selectedValues = opts.selectedValues;
     this.unselectedValues = opts.unselectedValues;
     this.value = opts.selectedValues;
     
-    removeAll(event){
+    component.removeAll = (event) => {
       var elements = document.querySelectorAll("select#selectedValues option");
       if(elements){
         for(var i = 0; i < elements.length; i++){
@@ -34,10 +37,10 @@
           element.selected = true;
         }
       }
-      $this.remove();
+      component.remove();
     }
     
-    addAll(event){
+    component.addAll = (event) => {
       var elements = document.querySelectorAll("select#unselectedValues option");
       if(elements){
         for(var i = 0; i < elements.length; i++){
@@ -45,10 +48,10 @@
           element.selected = true;
         }
       }
-      $this.add();
+      component.add();
     }
     
-    remove(event){
+    component.remove = (event) => {
       var selectedElements = document.querySelectorAll("select#selectedValues option:checked");
       var itemsToRemove = [];
       if(selectedElements){
@@ -60,19 +63,19 @@
       if(itemsToRemove.length > 0){
         for(var i = 0; i < itemsToRemove.length; i++){
           var val = itemsToRemove[i];
-          for(var x = 0; x < $this.selectedValues.length; x++){
-            var listItem = $this.selectedValues[x];
+          for(var x = 0; x < component.selectedValues.length; x++){
+            var listItem = component.selectedValues[x];
             if(val == listItem.value){
-              $this.unselectedValues.push(listItem);
-              $this.selectedValues.splice(x, 1);
+              component.unselectedValues.push(listItem);
+              component.selectedValues.splice(x, 1);
             }
           }
         }
       }
-      $this.update();
+      component.update();
     }
     
-    add(event){
+    component.add = (event) => {
       var selectedElements = document.querySelectorAll("select#unselectedValues option:checked");
       var itemsToRemove = [];
       if(selectedElements){
@@ -84,28 +87,27 @@
       if(itemsToRemove.length > 0){
         for(var i = 0; i < itemsToRemove.length; i++){
           var val = itemsToRemove[i];
-          for(var x = 0; x < $this.unselectedValues.length; x++){
-            var listItem = $this.unselectedValues[x];
+          for(var x = 0; x < component.unselectedValues.length; x++){
+            var listItem = component.unselectedValues[x];
             if(val == listItem.value){
-              $this.selectedValues.push(listItem);
-              $this.unselectedValues.splice(x, 1);
+              component.selectedValues.push(listItem);
+              component.unselectedValues.splice(x, 1);
             }
           }
         }
       }
-      $this.update();
+      component.update();
     }
     
     this.on('mount', function(){
-      $this.value = $this.selectedValues;
+      component.value = component.selectedValues;
     });
     
     /*
       On change update the element's value.
-      TODO problem is here.
     */
     this.on('update', function(){
-      $this.value = $this.selectedValues;
+      component.value = component.selectedValues;
     });
   </script>
   

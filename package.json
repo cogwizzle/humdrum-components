@@ -43,7 +43,9 @@
   },
   "dependencies": {
     "blaze": "^3.6.3",
+    "font-awesome": "^4.7.0",
     "riot": "^3.8.1",
+    "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
   }
 }
