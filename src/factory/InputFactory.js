@@ -1,8 +1,11 @@
+import {TextField} from '../form_elements/TextField';
+import {TextAreaField} from '../form_elements/TextAreaField';
+import {PasswordField} from '../form_elements/PasswordField';
+import {SelectField} from '../form_elements/SelectField';
+import {CheckField} from '../form_elements/CheckField';
+
 /**
   Creates inputs based on descriptions.
-
-  @author Joe Fehrman
-  @since 11/12/2016
 */
 var InputFactory = function(){
   function __construct(){}
@@ -46,4 +49,8 @@ var InputFactory = function(){
 
   __construct();
   return {"build" : build};
-}
+};
+
+module.exports = {
+  InputFactory
+};

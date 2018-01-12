@@ -1,7 +1,38 @@
 import riot from 'riot';
-import './list_builder.tag';
+import './dynamic_form.tag';
 
-riot.mount('list_builder', {
-  selectedValues : [{"value" : "1", "display" : "selected"}],
-  unselectedValues : [{"value" : "2", "display" : "not selected"}]
-})[0];
+var inputDescriptions = [
+{
+  "id" : "1",
+    "label" : "checkbox",
+    "type" : "checkbox",
+    "values" : [
+    {"value" : "test", "label" : "y"},
+    {"value" : "test2", "label" : "n"}
+    ]
+},
+{
+  "id" : "2",
+  "label" : "password",
+  "type" : "password"
+},
+{
+  "id" : "3",
+  "label" : "select",
+  "type" : "select",
+  "values" : [
+  {"value" : "test", "label" : "y"},
+  {"value" : "test2", "label" : "n"}
+  ]
+},
+{
+  "id" : "4",
+  "label" : "textarea",
+  "type" : "textarea"
+},
+{
+  "id" : "name",
+  "label" : "test",
+  "type" : "text"
+}];
+riot.mount("dynamic_form", {"input_descriptions" : inputDescriptions, "id" : "formId", "action" : "testActin", "method" : "testMethod", "submit" : true});

@@ -1,8 +1,5 @@
 /**
   Contains all similar functions of Dynamic Fields.
-
-  @author Joe Fehrman
-  @since 05/03/2017
 */
 var AbstractField = (function(inputDescription){
 
@@ -51,3 +48,7 @@ var AbstractField = (function(inputDescription){
     "createWrapperGrid" : createWrapperGrid
   }
 })(); // Wrapped in execution call because we need revealing module pattern to activate.
+
+module.exports = {
+  AbstractField
+};

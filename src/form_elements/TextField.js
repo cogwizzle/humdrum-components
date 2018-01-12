@@ -1,8 +1,8 @@
+import {extend} from 'extend';
+import {AbstractField} from './AbstractField';
+
 /**
   Create a text input.
-
-  @author Joe Fehrman
-  @since 11/14/2016
 */
 var TextField = function(inputDescription){
   extend(this, AbstractField);
@@ -44,3 +44,7 @@ var TextField = function(inputDescription){
 
   return __construct(inputDescription); // Call the constructor.
 }
+
+module.exports = {
+  TextField
+};

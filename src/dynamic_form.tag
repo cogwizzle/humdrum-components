@@ -6,17 +6,21 @@
     <button type="submit" if="{submit}">Submit</button>
   </form>
   <script>
-  this.inputs = [];
-  var descriptions = opts.input_descriptions;
-  var factory = new InputFactory();
-  for(var i = 0, length = descriptions.length; i < length; i++){
-    this.inputs.push(factory.build(descriptions[i]));
-  }
+    import riot from 'riot';
+    import 'blaze/dist/blaze.min.css';
+    import {InputFactory} from './factory/InputFactory';
 
-  this.id = opts.id;
-  this.method = opts.method;
-  this.action = opts.action;
-  this.submit = opts.submit;
+    this.inputs = [];
+    var descriptions = opts.input_descriptions;
+    var factory = new InputFactory();
+    for(var i = 0, length = descriptions.length; i < length; i++){
+      this.inputs.push(factory.build(descriptions[i]));
+    }
+
+    this.id = opts.id;
+    this.method = opts.method;
+    this.action = opts.action;
+    this.submit = opts.submit;
   </script>
 <style>
 .dynamic_check input{

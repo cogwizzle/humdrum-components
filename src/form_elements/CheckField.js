@@ -1,8 +1,8 @@
+import {AbstractField} from './AbstractField';
+import {extend} from 'extend';
+
 /**
   Create a check input.
-
-  @author Joe Fehrman
-  @since 11/14/2016
 */
 var CheckField = function(inputDescription){
   extend(this, AbstractField);
@@ -52,3 +52,7 @@ var CheckField = function(inputDescription){
 
   return __construct(inputDescription); // Call the constructor.
 }
+
+module.exports = {
+  CheckField
+};

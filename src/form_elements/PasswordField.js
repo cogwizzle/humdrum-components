@@ -1,8 +1,8 @@
+import {AbstractField} from './AbstractField';
+import {extend} from 'extend';
+
 /**
   Create a password input.
-
-  @author Joe Fehrman
-  @since 11/14/2016
 */
 var PasswordField = function(inputDescription){
   extend(this, AbstractField);
@@ -43,4 +43,8 @@ var PasswordField = function(inputDescription){
   }
 
   return __construct(inputDescription); // Call the constructor.
-}
+};
+
+module.exports = {
+  PasswordField
+};
