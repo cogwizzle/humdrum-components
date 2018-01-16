@@ -6,12 +6,17 @@
   </div>
   
   <script>
-    actionEvent = opts.press;
-    bgColor = "black";
+    let component = this;
+
+    component.actionEvent = opts.press;
+    component.bgColor = "black";
+
     if(opts.background_color){
-      bgColor = opts.background_color;
+
+      component.bgColor = opts.background_color;
     }
-    iconClass = opts.icon_class;
+
+    component.iconClass = opts.icon_class;
   </script>
   
   <style>

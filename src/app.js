@@ -1,38 +1,9 @@
 import riot from 'riot';
-import './dynamic_form.tag';
+import './floating_action_button.tag';
 
-var inputDescriptions = [
-{
-  "id" : "1",
-    "label" : "checkbox",
-    "type" : "checkbox",
-    "values" : [
-    {"value" : "test", "label" : "y"},
-    {"value" : "test2", "label" : "n"}
-    ]
-},
-{
-  "id" : "2",
-  "label" : "password",
-  "type" : "password"
-},
-{
-  "id" : "3",
-  "label" : "select",
-  "type" : "select",
-  "values" : [
-  {"value" : "test", "label" : "y"},
-  {"value" : "test2", "label" : "n"}
-  ]
-},
-{
-  "id" : "4",
-  "label" : "textarea",
-  "type" : "textarea"
-},
-{
-  "id" : "name",
-  "label" : "test",
-  "type" : "text"
-}];
-riot.mount("dynamic_form", {"input_descriptions" : inputDescriptions, "id" : "formId", "action" : "testActin", "method" : "testMethod", "submit" : true});
+riot.mount("floating_action_button", {
+  "press" : function(){
+    alert("HELLO");
+  },
+  "background_color" : "red"
+});
