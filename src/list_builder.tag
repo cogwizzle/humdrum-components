@@ -74,6 +74,7 @@
           }
         }
       }
+      component.trigger('removed', itemsToRemove);
       component.update();
     }
     
@@ -98,6 +99,7 @@
           }
         }
       }
+      component.trigger('added', itemsToRemove);
       component.update();
     }
     

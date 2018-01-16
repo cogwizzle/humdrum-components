@@ -3719,6 +3719,7 @@ component.remove = function (event) {
       }
     }
   }
+  component.trigger('removed', itemsToRemove);
   component.update();
 };
 
@@ -3743,6 +3744,7 @@ component.add = function (event) {
       }
     }
   }
+  component.trigger('added', itemsToRemove);
   component.update();
 };
 
