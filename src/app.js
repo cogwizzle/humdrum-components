@@ -1,9 +1,7 @@
 import riot from 'riot';
-import './floating_action_button.tag';
+import './list_builder.tag';
 
-riot.mount("floating_action_button", {
-  "press" : function(){
-    alert("HELLO");
-  },
-  "background_color" : "red"
+riot.mount("list_builder", {
+  selected_values : [{"value" : "1", "display" : "selected"}],
+  unselected_values : [{"value" : "2", "display" : "not selected"}]
 });

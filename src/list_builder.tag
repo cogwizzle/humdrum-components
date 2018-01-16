@@ -1,8 +1,9 @@
 <list_builder>
   <div class="o-grid">
     <div class="o-grid__cell">
+      <h3>Selected</h3>
       <select id="selectedValues" class="list" multiple>
-        <option each="{selectedValues}" value="{value}">{display}</option>
+        <option each="{selected_values}" value="{value}">{display}</option>
       </select>
     </div>
     <div class="o-grid__cell o-grid__cell--width-10">
@@ -14,8 +15,9 @@
       </ul>
     </div>
     <div class="o-grid__cell">
+      <h3>Not Selected</h3>
       <select id="unselectedValues" class="list" multiple>
-        <option each="{unselectedValues}" value="{value}">{display}</option>
+        <option each="{unselected_values}" value="{value}">{display}</option>
       </select>
     </div>
   </div>
@@ -25,9 +27,9 @@
     import 'font-awesome/css/font-awesome.min.css';
 
     var component = this;
-    this.selectedValues = opts.selectedValues;
-    this.unselectedValues = opts.unselectedValues;
-    this.value = opts.selectedValues;
+    component.selected_values = opts.selected_values;
+    component.unselected_values = opts.unselected_values;
+    component.value = opts.selected_values;
     
     component.removeAll = (event) => {
       var elements = document.querySelectorAll("select#selectedValues option");
@@ -63,11 +65,11 @@
       if(itemsToRemove.length > 0){
         for(var i = 0; i < itemsToRemove.length; i++){
           var val = itemsToRemove[i];
-          for(var x = 0; x < component.selectedValues.length; x++){
-            var listItem = component.selectedValues[x];
+          for(var x = 0; x < component.selected_values.length; x++){
+            var listItem = component.selected_values[x];
             if(val == listItem.value){
-              component.unselectedValues.push(listItem);
-              component.selectedValues.splice(x, 1);
+              component.unselected_values.push(listItem);
+              component.selected_values.splice(x, 1);
             }
           }
         }
@@ -87,11 +89,11 @@
       if(itemsToRemove.length > 0){
         for(var i = 0; i < itemsToRemove.length; i++){
           var val = itemsToRemove[i];
-          for(var x = 0; x < component.unselectedValues.length; x++){
-            var listItem = component.unselectedValues[x];
+          for(var x = 0; x < component.unselected_values.length; x++){
+            var listItem = component.unselected_values[x];
             if(val == listItem.value){
-              component.selectedValues.push(listItem);
-              component.unselectedValues.splice(x, 1);
+              component.selected_values.push(listItem);
+              component.unselected_values.splice(x, 1);
             }
           }
         }
@@ -100,18 +102,18 @@
     }
     
     this.on('mount', function(){
-      component.value = component.selectedValues;
+      component.value = component.selected_values;
     });
     
     /*
       On change update the element's value.
     */
     this.on('update', function(){
-      component.value = component.selectedValues;
+      component.value = component.selected_values;
     });
   </script>
   
-  <style scoped>
+  <style>
     select#unselectedValues, select#selectedValues{
       height: 300px;
       width: 200px;
