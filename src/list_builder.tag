@@ -32,23 +32,28 @@
     component.value = opts.selected_values;
     
     component.removeAll = (event) => {
-      var elements = document.querySelectorAll("select#selectedValues option");
+      let elements = document.querySelectorAll("select#selectedValues option");
+
       if(elements){
-        for(var i = 0; i < elements.length; i++){
-          var element = elements[i];
+
+        elements.forEach((element) => {
+
           element.selected = true;
-        }
+        });
       }
+
       component.remove();
     }
     
     component.addAll = (event) => {
-      var elements = document.querySelectorAll("select#unselectedValues option");
+      let elements = document.querySelectorAll("select#unselectedValues option");
+
       if(elements){
-        for(var i = 0; i < elements.length; i++){
-          var element = elements[i];
+
+        elements.forEach((element) => {
+
           element.selected = true;
-        }
+        });
       }
       component.add();
     }
@@ -56,24 +61,32 @@
     component.remove = (event) => {
       var selectedElements = document.querySelectorAll("select#selectedValues option:checked");
       var itemsToRemove = [];
+
       if(selectedElements){
-        for(var i = 0; i < selectedElements.length; i++){
-          var element = selectedElements[i];
+
+        selectedElements.forEach((element) => {
+
           itemsToRemove.push(element.value);
-        }
+        });
       }
-      if(itemsToRemove.length > 0){
-        for(var i = 0; i < itemsToRemove.length; i++){
-          var val = itemsToRemove[i];
-          for(var x = 0; x < component.selected_values.length; x++){
-            var listItem = component.selected_values[x];
-            if(val == listItem.value){
+
+        
+        
+      itemsToRemove.forEach((val) => {
+
+        component.selected_values = component.selected_values
+          .filter((listItem) => {
+
+            if (listItem.value === val) {
+
               component.unselected_values.push(listItem);
-              component.selected_values.splice(x, 1);
+            }else{
+
+              return listItem;
             }
-          }
-        }
-      }
+          });
+      });
+
       component.trigger('removed', itemsToRemove);
       component.update();
     }
@@ -81,24 +94,30 @@
     component.add = (event) => {
       var selectedElements = document.querySelectorAll("select#unselectedValues option:checked");
       var itemsToRemove = [];
+
       if(selectedElements){
-        for(var i = 0; i < selectedElements.length; i++){
-          var element = selectedElements[i];
+  
+        selectedElements.forEach((element) => {
+          
           itemsToRemove.push(element.value);
-        }
+        });
       }
-      if(itemsToRemove.length > 0){
-        for(var i = 0; i < itemsToRemove.length; i++){
-          var val = itemsToRemove[i];
-          for(var x = 0; x < component.unselected_values.length; x++){
-            var listItem = component.unselected_values[x];
-            if(val == listItem.value){
+
+      itemsToRemove.forEach((val) => {
+
+        component.unselected_values = component.unselected_values.
+          filter((listItem) => {
+
+            if (listItem.value === val) {
+
               component.selected_values.push(listItem);
-              component.unselected_values.splice(x, 1);
+            }else{
+
+              return listItem;
             }
-          }
-        }
-      }
+          });
+      });
+
       component.trigger('added', itemsToRemove);
       component.update();
     }
