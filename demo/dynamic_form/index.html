@@ -1,70 +1,11 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Demo page</title>
-  </head>
-  
-  <link rel="stylesheet" href="../../bower_components/blaze/dist/blaze.min.css" />
-  <body class="c-text">
-    <header_nav></header_nav>
-    <dynamic_form></dynamic_form>
-  
-  </body>
-  <footer>
-    <script type="text/javascript" src="../../bower_components/Extend/src/extend.js"></script>
-    <script type="text/javascript" src="../../bower_components/riot/riot.min.js"></script>
-    <script type="text/javascript" src="../../src/form_elements/AbstractField.js"></script>
-    <script type="text/javascript" src="../../src/form_elements/CheckField.js"></script>
-    <script type="text/javascript" src="../../src/form_elements/PasswordField.js"></script>
-    <script type="text/javascript" src="../../src/form_elements/SelectField.js"></script>
-    <script type="text/javascript" src="../../src/form_elements/TextAreaField.js"></script>
-    <script type="text/javascript" src="../../src/form_elements/TextField.js"></script>
-    <script type="text/javascript" src="../../src/factory/InputFactory.js"></script>
-    <script type="text/javascript" src="../../bower_components/riot/riot+compiler.min.js"></script>
-    <script type="riot/tag" src="../../src/header_nav.tag"></script>
-    <script type="riot/tag" src="../../src/dynamic_form.tag"></script>
-    
-    <script>
-riot.mount('header_nav',{
-page_heading : "DEMO"  // The title of the page
-});
-
-    var inputDescriptions = [
-{
-  "id" : "1",
-    "label" : "checkbox",
-    "type" : "checkbox",
-    "values" : [
-    {"value" : "test", "label" : "y"},
-    {"value" : "test2", "label" : "n"}
-    ]
-},
-{
-  "id" : "2",
-  "label" : "password",
-  "type" : "password"
-},
-{
-  "id" : "3",
-  "label" : "select",
-  "type" : "select",
-  "values" : [
-  {"value" : "test", "label" : "y"},
-  {"value" : "test2", "label" : "n"}
-  ]
-},
-{
-  "id" : "4",
-  "label" : "textarea",
-  "type" : "textarea"
-},
-{
-  "id" : "name",
-  "label" : "test",
-  "type" : "text"
-}];
-riot.mount("dynamic_form", {"input_descriptions" : inputDescriptions, "id" : "formId", "action" : "testActin", "method" : "testMethod", "submit" : true});
-    </script>
-  </footer>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynammic Form - Test Page</title>
+</head>
+<body>
+  <dynamic_form></dynamic_form>
+</body>
+<script src="../dist/dynamic_form.js"></script>
 </html>

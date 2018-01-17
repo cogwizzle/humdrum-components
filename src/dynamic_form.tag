@@ -8,19 +8,21 @@
   <script>
     import riot from 'riot';
     import 'blaze/dist/blaze.min.css';
-    import {InputFactory} from './factory/InputFactory';
+    import InputFactory from './factory/InputFactory';
 
-    this.inputs = [];
-    var descriptions = opts.input_descriptions;
-    var factory = new InputFactory();
-    for(var i = 0, length = descriptions.length; i < length; i++){
-      this.inputs.push(factory.build(descriptions[i]));
-    }
+    let component = this;
+    let descriptions = opts.input_descriptions;
+    let factory = new InputFactory();
 
-    this.id = opts.id;
-    this.method = opts.method;
-    this.action = opts.action;
-    this.submit = opts.submit;
+    component.inputs = descriptions.map((description) => {
+
+      return factory.build(description);
+    });
+
+    component.id = opts.id;
+    component.method = opts.method;
+    component.action = opts.action;
+    component.submit = opts.submit;
   </script>
 <style>
 .dynamic_check input{

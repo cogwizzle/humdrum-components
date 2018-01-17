@@ -49,6 +49,4 @@ var AbstractField = (function(inputDescription){
   }
 })(); // Wrapped in execution call because we need revealing module pattern to activate.
 
-module.exports = {
-  AbstractField
-};
+module.exports = AbstractField;

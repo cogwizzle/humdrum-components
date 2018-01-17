@@ -1,5 +1,5 @@
 import {extend} from 'extend';
-import {AbstractField} from './AbstractField';
+import AbstractField from './AbstractField';
 
 /**
   Create a text input.
@@ -45,6 +45,4 @@ var TextField = function(inputDescription){
   return __construct(inputDescription); // Call the constructor.
 }
 
-module.exports = {
-  TextField
-};
+module.exports = TextField;

@@ -2,11 +2,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'demo/dist');
-var APP_DIR = path.resolve(__dirname, 'demo/src');
+var APP_DIR = path.resolve(__dirname, './');
 
 var config = {
   entry: {
-    'list_builder': APP_DIR + '/list_builder.js',
+    'list_builder': APP_DIR + '/demo/src/list_builder.js',
+    'dynamic_form': APP_DIR + '/demo/src/dynamic_form.js',
   },
   output: {
     path: BUILD_DIR,

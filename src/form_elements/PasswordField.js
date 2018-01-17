@@ -1,4 +1,4 @@
-import {AbstractField} from './AbstractField';
+import AbstractField from './AbstractField';
 import {extend} from 'extend';
 
 /**
@@ -45,6 +45,4 @@ var PasswordField = function(inputDescription){
   return __construct(inputDescription); // Call the constructor.
 };
 
-module.exports = {
-  PasswordField
-};
+module.exports = PasswordField;

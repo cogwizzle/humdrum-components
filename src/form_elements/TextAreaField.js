@@ -1,4 +1,4 @@
-import {AbstractField} from './AbstractField';
+import AbstractField from './AbstractField';
 import {extend} from 'extend';
 
 /**
@@ -44,6 +44,4 @@ var TextAreaField = function(inputDescription){
   return __construct(inputDescription); // Call the constructor.
 }
 
-module.exports = {
-  TextAreaField
-};
+module.exports = TextAreaField;
