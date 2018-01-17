@@ -1,14 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'dist');
+var BUILD_DIR = './';
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-  entry: APP_DIR + '/app.js',
+  entry: {
+    'dist/humdrum-components': APP_DIR + '/app.js',
+    'demo/list_builder/dist/bundle': './demo/list_builder/src/app.js',
+  },
   output: {
-    path: BUILD_DIR,
-    filename: 'humdrum_components.js'
+    filename: '[name].js'
   },
   module : {
     loaders : [
