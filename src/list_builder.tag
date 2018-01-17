@@ -59,14 +59,15 @@
     }
     
     component.remove = (event) => {
-      let selectedElements = document.querySelectorAll("select#selectedValues option:checked");
+      let selectedElements = document
+        .querySelectorAll("select#selectedValues option:checked");
       let itemsToRemove = [];
 
       if(selectedElements){
 
-        selectedElements.forEach((element) => {
+        itemsToRemove = selectedElements.map((element) => {
 
-          itemsToRemove.push(element.value);
+          return element.value;
         });
       }
 
@@ -92,14 +93,15 @@
     }
     
     component.add = (event) => {
-      let selectedElements = document.querySelectorAll("select#unselectedValues option:checked");
+      let selectedElements = document
+        .querySelectorAll("select#unselectedValues option:checked");
       let itemsToRemove = [];
 
       if(selectedElements){
   
-        selectedElements.forEach((element) => {
+        itemsToRemove = selectedElements.map((element) => {
           
-          itemsToRemove.push(element.value);
+          return element.value;
         });
       }
 
@@ -122,14 +124,14 @@
       component.update();
     }
     
-    this.on('mount', function(){
+    this.on('mount', () => {
       component.value = component.selected_values;
     });
     
     /*
       On change update the element's value.
     */
-    this.on('update', function(){
+    this.on('update', () => {
       component.value = component.selected_values;
     });
   </script>
