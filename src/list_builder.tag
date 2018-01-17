@@ -26,7 +26,7 @@
     import 'blaze/dist/blaze.min.css';
     import 'font-awesome/css/font-awesome.min.css';
 
-    var component = this;
+    let component = this;
     component.selected_values = opts.selected_values;
     component.unselected_values = opts.unselected_values;
     component.value = opts.selected_values;
@@ -59,8 +59,8 @@
     }
     
     component.remove = (event) => {
-      var selectedElements = document.querySelectorAll("select#selectedValues option:checked");
-      var itemsToRemove = [];
+      let selectedElements = document.querySelectorAll("select#selectedValues option:checked");
+      let itemsToRemove = [];
 
       if(selectedElements){
 
@@ -92,8 +92,8 @@
     }
     
     component.add = (event) => {
-      var selectedElements = document.querySelectorAll("select#unselectedValues option:checked");
-      var itemsToRemove = [];
+      let selectedElements = document.querySelectorAll("select#unselectedValues option:checked");
+      let itemsToRemove = [];
 
       if(selectedElements){
   
