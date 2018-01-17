@@ -65,9 +65,9 @@
 
       if(selectedElements){
 
-        itemsToRemove = selectedElements.map((element) => {
+        selectedElements.forEach((element) => {
 
-          return element.value;
+          itemsToRemove.push(element.value);
         });
       }
 
@@ -99,9 +99,9 @@
 
       if(selectedElements){
   
-        itemsToRemove = selectedElements.map((element) => {
+        selectedElements.forEach((element) => {
           
-          return element.value;
+          itemsToRemove.push(element.value);
         });
       }
 

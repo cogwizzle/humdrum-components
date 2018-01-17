@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3891,7 +3891,17 @@ module.exports = __webpack_require__.p + "b06871f281fee6b241d60582ae9369b9.ttf";
 module.exports = __webpack_require__.p + "912ec66d7572ff821749319396470bde.svg";
 
 /***/ }),
-/* 17 */
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3901,130 +3911,48 @@ var _riot = __webpack_require__(0);
 
 var _riot2 = _interopRequireDefault(_riot);
 
-__webpack_require__(18);
+__webpack_require__(28);
+
+__webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_riot2.default.mount("list_builder", {
-  selected_values: [{ "value": "1", "display": "selected" }],
-  unselected_values: [{ "value": "2", "display": "not selected" }]
+_riot2.default.mount("floating_action_button", {
+  "press": function press() {
+    alert("Hello World!");
+  },
+  "background_color": "red",
+  "icon_class": "fa fa-address-book"
 });
 
 /***/ }),
-/* 18 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
     var riot = __webpack_require__(0)
-    riot.tag2('list_builder', '<div class="o-grid"> <div class="o-grid__cell"> <h3>Selected</h3> <select id="selectedValues" class="list" multiple> <option each="{selected_values}" riot-value="{value}">{display}</option> </select> </div> <div class="o-grid__cell o-grid__cell--width-10"> <ul id="list_builder_controls"> <li><button id="removeAll" onclick="{removeAll}"><i class="fa fa-forward" aria-hidden="true"></i></button></li> <li><button id="remove" onclick="{remove}"><i class="fa fa-play" aria-hidden="true"></i></button></li> <li><button id="add" onclick="{add}"><i class="fa fa-play fa-flip-horizontal" aria-hidden="true"></i></button></li> <li><button id="addAll" onclick="{addAll}"><i class="fa fa-backward" aria-hidden="true"></i></button></li> </ul> </div> <div class="o-grid__cell"> <h3>Not Selected</h3> <select id="unselectedValues" class="list" multiple> <option each="{unselected_values}" riot-value="{value}">{display}</option> </select> </div> </div>', 'list_builder select#unselectedValues,[data-is="list_builder"] select#unselectedValues,list_builder select#selectedValues,[data-is="list_builder"] select#selectedValues{ height: 300px; width: 200px; } list_builder ul#list_builder_controls li,[data-is="list_builder"] ul#list_builder_controls li{ list-style-type: none; padding:15px; } list_builder div.o-grid__cell,[data-is="list_builder"] div.o-grid__cell{ text-align:center; vertical-align:middle; }', '', function(opts) {
+    riot.tag2('floating_action_button', '<div class="floating_popout bottom-right"> <div class="floating_action_button" onclick="{actionEvent}" riot-style="background-color:{bgColor}"> <i class="icon {iconClass}"></i> </div> </div>', 'floating_action_button .floating_action_button,[data-is="floating_action_button"] .floating_action_button{ display : inline-block; position : relative; outline : none; -webkit-user-select : none; user-select : none; cursor : pointer; width : 60px; height : 60px; line-height : 60px; text-align : center; font-size : 32px; z-index : 999; color : #FFFFFF; border-radius : 50%; box-shadow : 0 0 5px rgba(0,0,0,0.15); transition : 0.2s opacity ease-in-out; -webkit-transition : 0.2s opacity ease-in-out; } floating_action_button .bottom-right,[data-is="floating_action_button"] .bottom-right{ position : fixed; bottom : 3rem; right : 3rem; }', '', function(opts) {
 'use strict';
+
+var _riot = __webpack_require__(0);
+
+var _riot2 = _interopRequireDefault(_riot);
 
 __webpack_require__(3);
 
-__webpack_require__(8);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var component = this;
-component.selected_values = opts.selected_values;
-component.unselected_values = opts.unselected_values;
-component.value = opts.selected_values;
 
-component.removeAll = function (event) {
-  var elements = document.querySelectorAll("select#selectedValues option");
+component.actionEvent = opts.press;
+component.bgColor = "black";
 
-  if (elements) {
+if (opts.background_color) {
 
-    elements.forEach(function (element) {
+  component.bgColor = opts.background_color;
+}
 
-      element.selected = true;
-    });
-  }
-
-  component.remove();
-};
-
-component.addAll = function (event) {
-  var elements = document.querySelectorAll("select#unselectedValues option");
-
-  if (elements) {
-
-    elements.forEach(function (element) {
-
-      element.selected = true;
-    });
-  }
-  component.add();
-};
-
-component.remove = function (event) {
-  var selectedElements = document.querySelectorAll("select#selectedValues option:checked");
-  var itemsToRemove = [];
-
-  if (selectedElements) {
-
-    selectedElements.forEach(function (element) {
-
-      itemsToRemove.push(element.value);
-    });
-  }
-
-  itemsToRemove.forEach(function (val) {
-
-    component.selected_values = component.selected_values.filter(function (listItem) {
-
-      if (listItem.value === val) {
-
-        component.unselected_values.push(listItem);
-      } else {
-
-        return listItem;
-      }
-    });
-  });
-
-  component.trigger('removed', itemsToRemove);
-  component.update();
-};
-
-component.add = function (event) {
-  var selectedElements = document.querySelectorAll("select#unselectedValues option:checked");
-  var itemsToRemove = [];
-
-  if (selectedElements) {
-
-    selectedElements.forEach(function (element) {
-
-      itemsToRemove.push(element.value);
-    });
-  }
-
-  itemsToRemove.forEach(function (val) {
-
-    component.unselected_values = component.unselected_values.filter(function (listItem) {
-
-      if (listItem.value === val) {
-
-        component.selected_values.push(listItem);
-      } else {
-
-        return listItem;
-      }
-    });
-  });
-
-  component.trigger('added', itemsToRemove);
-  component.update();
-};
-
-this.on('mount', function () {
-  component.value = component.selected_values;
-});
-
-/*
-  On change update the element's value.
-*/
-this.on('update', function () {
-  component.value = component.selected_values;
-});
+component.iconClass = opts.icon_class;
 });
 
     

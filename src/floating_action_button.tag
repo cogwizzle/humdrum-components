@@ -6,6 +6,9 @@
   </div>
   
   <script>
+    import riot from 'riot';
+    import 'blaze/dist/blaze.min.css';
+
     let component = this;
 
     component.actionEvent = opts.press;

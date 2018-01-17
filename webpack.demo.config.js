@@ -8,6 +8,7 @@ var config = {
   entry: {
     'list_builder': APP_DIR + '/demo/src/list_builder.js',
     'dynamic_form': APP_DIR + '/demo/src/dynamic_form.js',
+    'floating_action_button': APP_DIR + '/demo/src/floating_action_button.js',
   },
   output: {
     path: BUILD_DIR,

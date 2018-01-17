@@ -3198,110 +3198,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 
 
-/**
- * Extends a class definition with another class definition.
- * 
- * @author Joseph Fehrman
- * @since 07/09/2016
- * @param extendedObject Class that will have the class definition extended.
- * @param extendingObject Class that will extend another class' definition.
- */
-function extend(extendedObject, extendingObject) {
-  for (var property in extendingObject) {
-    extendedObject[property] = extendingObject[property];
-  }
-  extendedObject.super = extendingObject;
-  return extendedObject;
-}
-
-/**
- * Extends a class without overwriting properties that already exists.
- * TODO Depricated function to be removed.
- * 
- * @param extendedObject Class that will have the class definition extended.
- * @param extendingObject Class that will extend another class' definition.
- * @depricted
- */
-function safeExtend(extendedObject, extendingObject) {
-  for (var property in extendingObject) {
-    if (typeof extendedObject[property] == 'undefined') {
-      console.log(extendedObject[property]);
-      extendedObject[property] = extendingObject[property];
-    }
-  }
-  return extendedObject;
-}
-
-module.exports = {
-  extend: extend,
-  safeExtend: safeExtend
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
-  Contains all similar functions of Dynamic Fields.
-*/
-var AbstractField = function (inputDescription) {
-
-  /** 
-    Create a wrapper element. 
-     @param Name of the dynamic field. example dynamic_text.
-  */
-  function createWrapperSpan(dynamicFieldName) {
-    var wrapper = document.createElement("span");
-    wrapper.classList.add(dynamicFieldName);
-    wrapper.classList.add("o-grid");
-    return wrapper;
-  }
-
-  /**
-    Create a label.
-     @param id Id of the input.
-    @param labelText Label test show in display.
-    @return Label element.
-  */
-  function createLabel(id, labelText) {
-    var label = document.createElement("label");
-    label.setAttribute("for", id);
-    var textNode = document.createTextNode(labelText);
-    label.appendChild(textNode);
-    label.classList.add("o-grid-small--fit");
-    label.classList.add("o-grid--medium-fit");
-    label.classList.add("o-grid--large-fit");
-    return label;
-  }
-
-  /**
-    Creates wrapper div to be used to give fields a uniform look.
-  */
-  function createWrapperGrid() {
-    var grid = document.createElement("div");
-    grid.classList.add("o-grid__cell");
-    return grid;
-  }
-
-  return {
-    "createWrapperSpan": createWrapperSpan,
-    "createLabel": createLabel,
-    "createWrapperGrid": createWrapperGrid
-  };
-}(); // Wrapped in execution call because we need revealing module pattern to activate.
-
-module.exports = AbstractField;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -3378,7 +3274,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -3434,7 +3330,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(7);
+var	fixUrls = __webpack_require__(5);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -3750,13 +3646,13 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 5 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(6);
+var content = __webpack_require__(4);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -3764,7 +3660,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -3781,10 +3677,10 @@ if(false) {
 }
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
@@ -3795,7 +3691,7 @@ exports.push([module.i, "/*!v3.6.3*/@charset \"UTF-8\";html{box-sizing:border-bo
 
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3890,6 +3786,110 @@ module.exports = function (css) {
 };
 
 /***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Extends a class definition with another class definition.
+ * 
+ * @author Joseph Fehrman
+ * @since 07/09/2016
+ * @param extendedObject Class that will have the class definition extended.
+ * @param extendingObject Class that will extend another class' definition.
+ */
+function extend(extendedObject, extendingObject) {
+  for (var property in extendingObject) {
+    extendedObject[property] = extendingObject[property];
+  }
+  extendedObject.super = extendingObject;
+  return extendedObject;
+}
+
+/**
+ * Extends a class without overwriting properties that already exists.
+ * TODO Depricated function to be removed.
+ * 
+ * @param extendedObject Class that will have the class definition extended.
+ * @param extendingObject Class that will extend another class' definition.
+ * @depricted
+ */
+function safeExtend(extendedObject, extendingObject) {
+  for (var property in extendingObject) {
+    if (typeof extendedObject[property] == 'undefined') {
+      console.log(extendedObject[property]);
+      extendedObject[property] = extendingObject[property];
+    }
+  }
+  return extendedObject;
+}
+
+module.exports = {
+  extend: extend,
+  safeExtend: safeExtend
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+  Contains all similar functions of Dynamic Fields.
+*/
+var AbstractField = function (inputDescription) {
+
+  /** 
+    Create a wrapper element. 
+     @param Name of the dynamic field. example dynamic_text.
+  */
+  function createWrapperSpan(dynamicFieldName) {
+    var wrapper = document.createElement("span");
+    wrapper.classList.add(dynamicFieldName);
+    wrapper.classList.add("o-grid");
+    return wrapper;
+  }
+
+  /**
+    Create a label.
+     @param id Id of the input.
+    @param labelText Label test show in display.
+    @return Label element.
+  */
+  function createLabel(id, labelText) {
+    var label = document.createElement("label");
+    label.setAttribute("for", id);
+    var textNode = document.createTextNode(labelText);
+    label.appendChild(textNode);
+    label.classList.add("o-grid-small--fit");
+    label.classList.add("o-grid--medium-fit");
+    label.classList.add("o-grid--large-fit");
+    return label;
+  }
+
+  /**
+    Creates wrapper div to be used to give fields a uniform look.
+  */
+  function createWrapperGrid() {
+    var grid = document.createElement("div");
+    grid.classList.add("o-grid__cell");
+    return grid;
+  }
+
+  return {
+    "createWrapperSpan": createWrapperSpan,
+    "createLabel": createLabel,
+    "createWrapperGrid": createWrapperGrid
+  };
+}(); // Wrapped in execution call because we need revealing module pattern to activate.
+
+module.exports = AbstractField;
+
+/***/ }),
 /* 8 */,
 /* 9 */,
 /* 10 */,
@@ -3954,7 +3954,7 @@ var _riot = __webpack_require__(0);
 
 var _riot2 = _interopRequireDefault(_riot);
 
-__webpack_require__(5);
+__webpack_require__(3);
 
 var _InputFactory = __webpack_require__(21);
 
@@ -4070,9 +4070,9 @@ module.exports = InputFactory;
 "use strict";
 
 
-var _extend = __webpack_require__(1);
+var _extend = __webpack_require__(6);
 
-var _AbstractField = __webpack_require__(2);
+var _AbstractField = __webpack_require__(7);
 
 var _AbstractField2 = _interopRequireDefault(_AbstractField);
 
@@ -4130,11 +4130,11 @@ module.exports = TextField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(2);
+var _AbstractField = __webpack_require__(7);
 
 var _AbstractField2 = _interopRequireDefault(_AbstractField);
 
-var _extend = __webpack_require__(1);
+var _extend = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4189,11 +4189,11 @@ module.exports = TextAreaField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(2);
+var _AbstractField = __webpack_require__(7);
 
 var _AbstractField2 = _interopRequireDefault(_AbstractField);
 
-var _extend = __webpack_require__(1);
+var _extend = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4249,11 +4249,11 @@ module.exports = PasswordField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(2);
+var _AbstractField = __webpack_require__(7);
 
 var _AbstractField2 = _interopRequireDefault(_AbstractField);
 
-var _extend = __webpack_require__(1);
+var _extend = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4327,11 +4327,11 @@ module.exports = SelectField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(2);
+var _AbstractField = __webpack_require__(7);
 
 var _AbstractField2 = _interopRequireDefault(_AbstractField);
 
-var _extend = __webpack_require__(1);
+var _extend = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

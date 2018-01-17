@@ -2,30 +2,13 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Demo page</title>
+    <title>Floating Action Button - Test Page</title>
   </head>
   
-  <link rel="stylesheet" href="../../bower_components/blaze/dist/blaze.min.css" />
   <body class="c-text">
-    <header_nav></header_nav>
     <floating_action_button></floating_action_button>
   </body>
   <footer>
-    <script type="text/javascript" src="../../bower_components/riot/riot+compiler.min.js"></script>
-    <script type="riot/tag" src="../../src/header_nav.tag"></script>
-    <script type="riot/tag" src="../../src/floating_action_button.tag"></script>
-    
-    <script>
-riot.mount('header_nav',{
-page_heading : "DEMO"  // The title of the page
-});
-
-riot.mount("floating_action_button", {
-  "press" : function(){
-    alert("HELLO");
-  },
-  "background_color" : "red"
-});
-    </script>
+    <script type="text/javascript" src="../dist/floating_action_button.js"></script>
   </footer>
 </html>
