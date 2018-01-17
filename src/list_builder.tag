@@ -105,8 +105,8 @@
 
       itemsToRemove.forEach((val) => {
 
-        component.unselected_values = component.unselected_values.
-          filter((listItem) => {
+        component.unselected_values = component.unselected_values
+          .filter((listItem) => {
 
             if (listItem.value === val) {
 
