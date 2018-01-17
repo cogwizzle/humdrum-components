@@ -1,12 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'dist');
-var APP_DIR = path.resolve(__dirname, 'src');
+var BUILD_DIR = path.resolve(__dirname, 'demo/dist');
+var APP_DIR = path.resolve(__dirname, 'demo/src');
 
 var config = {
   entry: {
-    'humdrum-components': APP_DIR + '/app.js',
+    'list_builder': APP_DIR + '/list_builder.js',
   },
   output: {
     path: BUILD_DIR,
@@ -40,3 +40,4 @@ var config = {
 };
 
 module.exports = config;
+
