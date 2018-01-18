@@ -60,11 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3192,7 +3193,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3274,7 +3276,8 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 2 */
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -3646,7 +3649,8 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -3677,7 +3681,80 @@ if(false) {
 }
 
 /***/ }),
-/* 4 */
+
+/***/ 31:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _riot = __webpack_require__(0);
+
+var _riot2 = _interopRequireDefault(_riot);
+
+__webpack_require__(32);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function clickEvent(event) {
+  alert(event.item.row.uri);
+}
+
+// Mount the element to the page.
+_riot2.default.mount('table_list', {
+  data: [{ "uri": "http://www.google.com", "text": "The Google" }, { "uri": "http://www.yahoo.com", "text": "Yahoo!", "test": "test" }],
+  rowClick: clickEvent
+});
+
+/***/ }),
+
+/***/ 32:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    var riot = __webpack_require__(0)
+    riot.tag2('table_list', '<table class="{tableClass}"> <thead class="c-table__head"> <tr class="c-table__row c-table__row--heading"> <th class="c-table__cell" each="{column in columns}">{column}</th> </tr> </thead> <tbody class="c-table__body"> <tr class="c-table__row" each="{row in data}" onclick="{parent.rowClick}"> <td class="c-table__cell" each="{column in columns}">{row[column]}</td> </tr> </tbody> </table>', '', '', function(opts) {
+'use strict';
+
+var _riot = __webpack_require__(0);
+
+var _riot2 = _interopRequireDefault(_riot);
+
+__webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var component = this;
+
+var getKeys = function getKeys(obj, keys) {
+  for (var key in obj) {
+    if (!keys.includes(key)) {
+      keys.push(key);
+    }
+  }
+  return keys;
+};
+
+component.data = opts.data;
+component.rowClick = opts.rowClick;
+component.columns = [];
+
+for (var i = 0; i < component.data.length; i++) {
+  component.columns = getKeys(component.data[i], component.columns);
+}
+
+component.tableClass = "c-table";
+if (component.rowClick) {
+  component.tableClass += " c-table--clickable";
+}
+});
+
+    
+  
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -3691,7 +3768,8 @@ exports.push([module.i, "/*!v3.6.3*/@charset \"UTF-8\";html{box-sizing:border-bo
 
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3785,607 +3863,6 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
-/***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Extends a class definition with another class definition.
- * 
- * @author Joseph Fehrman
- * @since 07/09/2016
- * @param extendedObject Class that will have the class definition extended.
- * @param extendingObject Class that will extend another class' definition.
- */
-function extend(extendedObject, extendingObject) {
-  for (var property in extendingObject) {
-    extendedObject[property] = extendingObject[property];
-  }
-  extendedObject.super = extendingObject;
-  return extendedObject;
-}
-
-/**
- * Extends a class without overwriting properties that already exists.
- * TODO Depricated function to be removed.
- * 
- * @param extendedObject Class that will have the class definition extended.
- * @param extendingObject Class that will extend another class' definition.
- * @depricted
- */
-function safeExtend(extendedObject, extendingObject) {
-  for (var property in extendingObject) {
-    if (typeof extendedObject[property] == 'undefined') {
-      console.log(extendedObject[property]);
-      extendedObject[property] = extendingObject[property];
-    }
-  }
-  return extendedObject;
-}
-
-module.exports = {
-  extend: extend,
-  safeExtend: safeExtend
-};
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
-  Contains all similar functions of Dynamic Fields.
-*/
-var AbstractField = function (inputDescription) {
-
-  /** 
-    Create a wrapper element. 
-     @param Name of the dynamic field. example dynamic_text.
-  */
-  function createWrapperSpan(dynamicFieldName) {
-    var wrapper = document.createElement("span");
-    wrapper.classList.add(dynamicFieldName);
-    wrapper.classList.add("o-grid");
-    return wrapper;
-  }
-
-  /**
-    Create a label.
-     @param id Id of the input.
-    @param labelText Label test show in display.
-    @return Label element.
-  */
-  function createLabel(id, labelText) {
-    var label = document.createElement("label");
-    label.setAttribute("for", id);
-    var textNode = document.createTextNode(labelText);
-    label.appendChild(textNode);
-    label.classList.add("o-grid-small--fit");
-    label.classList.add("o-grid--medium-fit");
-    label.classList.add("o-grid--large-fit");
-    return label;
-  }
-
-  /**
-    Creates wrapper div to be used to give fields a uniform look.
-  */
-  function createWrapperGrid() {
-    var grid = document.createElement("div");
-    grid.classList.add("o-grid__cell");
-    return grid;
-  }
-
-  return {
-    "createWrapperSpan": createWrapperSpan,
-    "createLabel": createLabel,
-    "createWrapperGrid": createWrapperGrid
-  };
-}(); // Wrapped in execution call because we need revealing module pattern to activate.
-
-module.exports = AbstractField;
-
-/***/ }),
-/* 17 */,
-/* 18 */,
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _riot = __webpack_require__(0);
-
-var _riot2 = _interopRequireDefault(_riot);
-
-__webpack_require__(20);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var inputDescriptions = [{
-  "id": "1",
-  "label": "checkbox",
-  "type": "checkbox",
-  "values": [{ "value": "test", "label": "y" }, { "value": "test2", "label": "n" }]
-}, {
-  "id": "2",
-  "label": "password",
-  "type": "password"
-}, {
-  "id": "3",
-  "label": "select",
-  "type": "select",
-  "values": [{ "value": "test", "label": "y" }, { "value": "test2", "label": "n" }]
-}, {
-  "id": "4",
-  "label": "textarea",
-  "type": "textarea"
-}, {
-  "id": "name",
-  "label": "test",
-  "type": "text"
-}];
-
-_riot2.default.mount("dynamic_form", { "input_descriptions": inputDescriptions, "id": "formId", "action": "testActin", "method": "testMethod", "submit": true });
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-    var riot = __webpack_require__(0)
-    riot.tag2('dynamic_form', '<form class="dynamic_form" ref="{id}" id="{id}" action="{action}" method="{method}"> <span each="{inp in inputs}"> <raw content="{inp.outerHTML}"></raw> </span> <button type="submit" if="{submit}">Submit</button> </form>', 'dynamic_form .dynamic_check input,[data-is="dynamic_form"] .dynamic_check input{ margin-left: 20px; } dynamic_form span.o-grid,[data-is="dynamic_form"] span.o-grid{ padding-bottom:20px; } dynamic_form span.o-grid:last,[data-is="dynamic_form"] span.o-grid:last{ padding-bottom:0px; } dynamic_form div.o-grid__cell.label,[data-is="dynamic_form"] div.o-grid__cell.label{ width : 100%; text-align : right; }', '', function(opts) {
-'use strict';
-
-var _riot = __webpack_require__(0);
-
-var _riot2 = _interopRequireDefault(_riot);
-
-__webpack_require__(3);
-
-var _InputFactory = __webpack_require__(21);
-
-var _InputFactory2 = _interopRequireDefault(_InputFactory);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var component = this;
-var descriptions = opts.input_descriptions;
-var factory = new _InputFactory2.default();
-
-component.inputs = descriptions.map(function (description) {
-
-  return factory.build(description);
-});
-
-component.id = opts.id;
-component.method = opts.method;
-component.action = opts.action;
-component.submit = opts.submit;
-});
-
-riot.tag2('raw', '<span></span>', '', '', function(opts) {
-"use strict";
-
-this.root.innerHTML = opts.content;
-});
-
-    
-  
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _TextField = __webpack_require__(22);
-
-var _TextField2 = _interopRequireDefault(_TextField);
-
-var _TextAreaField = __webpack_require__(23);
-
-var _TextAreaField2 = _interopRequireDefault(_TextAreaField);
-
-var _PasswordField = __webpack_require__(24);
-
-var _PasswordField2 = _interopRequireDefault(_PasswordField);
-
-var _SelectField = __webpack_require__(25);
-
-var _SelectField2 = _interopRequireDefault(_SelectField);
-
-var _CheckField = __webpack_require__(26);
-
-var _CheckField2 = _interopRequireDefault(_CheckField);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-  Creates inputs based on descriptions.
-*/
-var InputFactory = function InputFactory() {
-  function __construct() {}
-
-  function addDefaults(element, id) {
-    element.setAttribute("id", id);
-    element.setAttribute("name", id);
-    element.classList.add("c-field");
-    return element;
-  }
-
-  /**
-    Build an input.
-     @param inputDescription Json object description of object.
-    @return Created input.
-  */
-  function build(inputDescription) {
-    var element = undefined;
-    switch (inputDescription.type.toLowerCase()) {
-      case "text":
-        return new _TextField2.default(inputDescription);
-        break;
-      case "textarea":
-        return new _TextAreaField2.default(inputDescription);
-        break;
-      case "password":
-        return new _PasswordField2.default(inputDescription);
-        break;
-      case "checkbox":
-        return new _CheckField2.default(inputDescription);
-        break;
-      case "select":
-        return new _SelectField2.default(inputDescription);
-        break;
-      default:
-        console.error("Unable to create an element.");
-        break;
-    }
-  }
-
-  __construct();
-  return { "build": build };
-};
-
-module.exports = InputFactory;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _extend = __webpack_require__(15);
-
-var _AbstractField = __webpack_require__(16);
-
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-  Create a text input.
-*/
-var TextField = function TextField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_text";
-
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElement(inputDescription.id);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
-  }
-
-  /**
-    Create the input element.
-     @param id Id of the element being created.
-    @return Input element.
-  */
-  function createElement(id) {
-    var input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.setAttribute("id", id);
-    input.setAttribute("name", id);
-    input.classList.add("c-field");
-    return input;
-  }
-
-  return __construct(inputDescription); // Call the constructor.
-};
-
-module.exports = TextField;
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _AbstractField = __webpack_require__(16);
-
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
-
-var _extend = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-  Create a text_area input.
-*/
-var TextAreaField = function TextAreaField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_textarea";
-
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElement(inputDescription.id);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
-  }
-
-  /**
-    Create the input element.
-     @param id Id of the element being created.
-    @return Input element.
-  */
-  function createElement(id) {
-    var input = document.createElement("textarea");
-    input.setAttribute("id", id);
-    input.setAttribute("name", id);
-    input.classList.add("c-field");
-    return input;
-  }
-
-  return __construct(inputDescription); // Call the constructor.
-};
-
-module.exports = TextAreaField;
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _AbstractField = __webpack_require__(16);
-
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
-
-var _extend = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-  Create a password input.
-*/
-var PasswordField = function PasswordField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_password";
-
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElement(inputDescription.id);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
-  }
-
-  /**
-    Create the input element.
-     @param id Id of the element being created.
-    @return Input element.
-  */
-  function createElement(id) {
-    var input = document.createElement("input");
-    input.setAttribute("type", "password");
-    input.setAttribute("id", id);
-    input.setAttribute("name", id);
-    input.classList.add("c-field");
-    return input;
-  }
-
-  return __construct(inputDescription); // Call the constructor.
-};
-
-module.exports = PasswordField;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _AbstractField = __webpack_require__(16);
-
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
-
-var _extend = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-  Create a select input.
-*/
-var SelectField = function SelectField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_select";
-
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElements(inputDescription.id, inputDescription.values, inputDescription.multiple);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
-  }
-
-  /**
-    Create the input element.
-     @param id Id of selectbox.
-    @param listOfValues List of options.
-    @param multiple Boolean representing if it is a multiple select box.
-    @return Selectbox.
-  */
-  function createElements(id) {
-    var listOfValues = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-    var multiple = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    var select = document.createElement("select");
-    select.setAttribute("name", id);
-    select.classList.add("c-field");
-
-    // Evaluate if select field allows multiple values to be selected.
-    if (multiple) {
-      select.setAttribute("multiple", true);
-    }
-    for (var i = 0; i < listOfValues.length; i++) {
-      var item = listOfValues[i];
-      var option = document.createElement("option");
-      option.setAttribute("name", id);
-      option.setAttribute("value", item.value);
-      option.classList.add("c-field");
-      var textNode = document.createTextNode(item.label);
-      option.appendChild(textNode);
-      select.appendChild(option);
-    }
-    return select;
-  }
-
-  return __construct(inputDescription); // Call the constructor.
-};
-
-module.exports = SelectField;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _AbstractField = __webpack_require__(16);
-
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
-
-var _extend = __webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-  Create a check input.
-*/
-var CheckField = function CheckField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_check";
-
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElements(inputDescription.id, inputDescription.values);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
-  }
-
-  /**
-    Create the input element.
-     @param id ID of the field.
-    @param listOfValues Values to be used as checkboxes.
-    @return checkbox span.
-  */
-  function createElements(id, listOfValues) {
-    var wrapper = document.createElement("span");
-    for (var i = 0; i < listOfValues.length; i++) {
-      var item = listOfValues[i];
-      var input = document.createElement("input");
-      input.setAttribute("type", "checkbox");
-      input.setAttribute("name", id);
-      input.setAttribute("value", item.value);
-      var textNode = document.createTextNode(item.label);
-      wrapper.appendChild(input);
-      wrapper.appendChild(textNode);
-    }
-    return wrapper;
-  }
-
-  return __construct(inputDescription); // Call the constructor.
-};
-
-module.exports = CheckField;
-
 /***/ })
-/******/ ]);
+
+/******/ });

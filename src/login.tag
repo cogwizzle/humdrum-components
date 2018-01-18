@@ -64,9 +64,11 @@
   </style>
   
   <script>
-    var $this = this;
+    import 'blaze/dist/blaze.min.css';
+
+    let component = this;
     
-    submit(e){
+    component.submit = (e) => {
       opts.on_submit();
     }
   </script>

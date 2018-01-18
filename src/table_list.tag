@@ -13,7 +13,11 @@
   </table>
   
   <script>
-    var getKeys = function(obj, keys){
+    import riot from 'riot';
+    import 'blaze/dist/blaze.min.css';
+    let component = this;
+
+    let getKeys = function(obj, keys){
       for(var key in obj){
         if(!keys.includes(key)){
           keys.push(key);
@@ -22,17 +26,17 @@
       return keys;
     }
 
-    this.data = opts.data;
-    this.rowClick = opts.rowClick;
-    this.columns = [];
-    var $this = this;
-    for(var i = 0; i < $this.data.length; i++){
-      $this.columns = getKeys($this.data[i], $this.columns);
+    component.data = opts.data;
+    component.rowClick = opts.rowClick;
+    component.columns = [];
+
+    for(var i = 0; i < component.data.length; i++){
+      component.columns = getKeys(component.data[i], component.columns);
     }
 
-    this.tableClass = "c-table";
-    if(this.rowClick){
-      this.tableClass+= " c-table--clickable";
+    component.tableClass = "c-table";
+    if(component.rowClick){
+      component.tableClass+= " c-table--clickable";
     }
   </script>
 </table_list>

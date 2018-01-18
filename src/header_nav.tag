@@ -78,6 +78,9 @@
   </style>
 
   <script>
+    import riot from 'riot';
+    import 'blaze/dist/blaze.min.css';
+
     let _component = this;
 
     /**

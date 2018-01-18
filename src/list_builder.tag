@@ -23,6 +23,7 @@
   </div>
   
   <script>
+    import riot from 'riot';
     import 'blaze/dist/blaze.min.css';
     import 'font-awesome/css/font-awesome.min.css';
 
