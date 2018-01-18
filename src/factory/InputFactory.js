@@ -24,19 +24,19 @@ export default class InputFactory {
     let element = undefined;
     switch(inputDescription.type.toLowerCase()){
       case "text":
-        return new TextField(inputDescription);
+        return new TextField().build(inputDescription);
         break;
       case "textarea":
-        return new TextAreaField(inputDescription);
+        return new TextAreaField().build(inputDescription);
         break;
       case "password":
-        return new PasswordField(inputDescription);
+        return new PasswordField().build(inputDescription);
         break;
       case "checkbox":
-        return new CheckField(inputDescription);
+        return new CheckField().build(inputDescription);
         break;
       case "select":
-        return new SelectField(inputDescription);
+        return new SelectField().build(inputDescription);
         break;
       default:
         console.error("Unable to create an element.");

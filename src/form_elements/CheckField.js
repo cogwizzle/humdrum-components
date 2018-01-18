@@ -1,41 +1,25 @@
 import AbstractField from './AbstractField';
-import {extend} from 'extend';
 
 /**
   Create a check input.
 */
-var CheckField = function(inputDescription){
-  extend(this, AbstractField);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_check";
-  
+export default class CheckField extends AbstractField {
 
-  /** Default constructor. */
-  function __construct(inputDescription){
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElements(inputDescription.id, inputDescription.values);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+  /**
+   * Default constructor.
+   */
+  constructor(inputDescription) {
+    super();
   }
 
   /**
-    Create the input element.
-
-    @param id ID of the field.
-    @param listOfValues Values to be used as checkboxes.
-    @return checkbox span.
-  */
-  function createElements(id, listOfValues){
+   * Create the input element.
+   *
+   * @param id ID of the field.
+   * @param listOfValues Values to be used as checkboxes.
+   * @return checkbox span.
+   */
+  createElements(id, listOfValues){
     var wrapper = document.createElement("span");
     for(var i = 0; i < listOfValues.length; i++){
       var item = listOfValues[i];
@@ -50,7 +34,21 @@ var CheckField = function(inputDescription){
     return wrapper;
   }
 
-  return __construct(inputDescription); // Call the constructor.
+  build(inputDescription){
+    let specialClass = "dynamic_check";
+    let wrapper = this.createWrapperSpan(specialClass);
+    let label = this.createLabel(inputDescription.id, inputDescription.label);
+    let element = this.createElements(inputDescription.id, inputDescription.values);
+    let labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    let inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  }
 }
 
 module.exports = CheckField;

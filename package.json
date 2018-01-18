@@ -43,7 +43,6 @@
   },
   "dependencies": {
     "blaze": "^3.6.3",
-    "extend": "git+https://github.com/jfehrman/extend.git",
     "font-awesome": "^4.7.0",
     "riot": "^3.8.1",
     "url-loader": "^0.6.2",

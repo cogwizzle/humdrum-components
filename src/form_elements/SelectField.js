@@ -1,42 +1,27 @@
 import AbstractField from './AbstractField';
-import {extend} from 'extend';
 
 /**
   Create a select input.
 */
-var SelectField = function(inputDescription){
-  extend(this, AbstractField);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_select";
+export default class SelectField extends AbstractField {
 
-  /** Default constructor. */
-  function __construct(inputDescription){
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElements(inputDescription.id, inputDescription.values, inputDescription.multiple);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+  /**
+   * Default constructor.
+   */
+  constructor() {
+    super();
   }
 
   /**
-    Create the input element.
-
-    @param id Id of selectbox.
-    @param listOfValues List of options.
-    @param multiple Boolean representing if it is a multiple select box.
-    @return Selectbox.
-  */
-  function createElements(id, listOfValues = [], multiple = false){
-    var select = document.createElement("select");
+   * Create the input element.
+   *
+   * @param id Id of selectbox.
+   * @param listOfValues List of options.
+   * @param multiple Boolean representing if it is a multiple select box.
+   * @return Selectbox.
+   */
+  createElements(id, listOfValues = [], multiple = false){
+    let select = document.createElement("select");
     select.setAttribute("name", id);
     select.classList.add("c-field");
     
@@ -44,20 +29,34 @@ var SelectField = function(inputDescription){
     if(multiple){
       select.setAttribute("multiple", true);
     }
-    for(var i = 0; i < listOfValues.length; i++){
-      var item = listOfValues[i];
-      var option = document.createElement("option");
+    for(let i = 0; i < listOfValues.length; i++){
+      let item = listOfValues[i];
+      let option = document.createElement("option");
       option.setAttribute("name", id);
       option.setAttribute("value", item.value);
       option.classList.add("c-field");
-      var textNode = document.createTextNode(item.label);
+      let textNode = document.createTextNode(item.label);
       option.appendChild(textNode);
       select.appendChild(option);
     }
     return select;
   }
 
-  return __construct(inputDescription); // Call the constructor.
-};
+  build(inputDescription){
+    let specialClass = "dynamic_select";
+    let wrapper = this.createWrapperSpan(specialClass);
+    let label = this.createLabel(inputDescription.id, inputDescription.label);
+    let element = this.createElements(inputDescription.id, inputDescription.values, inputDescription.multiple);
+    let labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    let inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  }
+}
 
 module.exports = SelectField;

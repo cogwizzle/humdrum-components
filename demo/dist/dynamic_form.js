@@ -3795,81 +3795,55 @@ module.exports = function (css) {
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Extends a class definition with another class definition.
- * 
- * @author Joseph Fehrman
- * @since 07/09/2016
- * @param extendedObject Class that will have the class definition extended.
- * @param extendingObject Class that will extend another class' definition.
- */
-function extend(extendedObject, extendingObject) {
-  for (var property in extendingObject) {
-    extendedObject[property] = extendingObject[property];
-  }
-  extendedObject.super = extendingObject;
-  return extendedObject;
-}
-
-/**
- * Extends a class without overwriting properties that already exists.
- * TODO Depricated function to be removed.
- * 
- * @param extendedObject Class that will have the class definition extended.
- * @param extendingObject Class that will extend another class' definition.
- * @depricted
- */
-function safeExtend(extendedObject, extendingObject) {
-  for (var property in extendingObject) {
-    if (typeof extendedObject[property] == 'undefined') {
-      console.log(extendedObject[property]);
-      extendedObject[property] = extendingObject[property];
-    }
-  }
-  return extendedObject;
-}
-
-module.exports = {
-  extend: extend,
-  safeExtend: safeExtend
-};
-
-/***/ }),
+/* 15 */,
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /**
-  Contains all similar functions of Dynamic Fields.
-*/
-var AbstractField = function (inputDescription) {
+ * Contains all similar functions of Dynamic Fields.
+ */
+var AbstractField = function () {
+
+  /**
+   * Default constructor.
+   */
+  function AbstractField() {
+    _classCallCheck(this, AbstractField);
+  }
 
   /** 
-    Create a wrapper element. 
-     @param Name of the dynamic field. example dynamic_text.
-  */
-  function createWrapperSpan(dynamicFieldName) {
+   * Create a wrapper element. 
+   *
+   * @param Name of the dynamic field. example dynamic_text.
+   */
+
+
+  AbstractField.prototype.createWrapperSpan = function createWrapperSpan(dynamicFieldName) {
     var wrapper = document.createElement("span");
     wrapper.classList.add(dynamicFieldName);
     wrapper.classList.add("o-grid");
     return wrapper;
-  }
+  };
 
   /**
-    Create a label.
-     @param id Id of the input.
-    @param labelText Label test show in display.
-    @return Label element.
-  */
-  function createLabel(id, labelText) {
+   * Create a label.
+   *
+   * @param id Id of the input.
+   * @param labelText Label test show in display.
+   * @return Label element.
+   */
+
+
+  AbstractField.prototype.createLabel = function createLabel(id, labelText) {
     var label = document.createElement("label");
     label.setAttribute("for", id);
     var textNode = document.createTextNode(labelText);
@@ -3878,23 +3852,24 @@ var AbstractField = function (inputDescription) {
     label.classList.add("o-grid--medium-fit");
     label.classList.add("o-grid--large-fit");
     return label;
-  }
+  };
 
   /**
-    Creates wrapper div to be used to give fields a uniform look.
-  */
-  function createWrapperGrid() {
+   * Creates wrapper div to be used to give fields a uniform look.
+   */
+
+
+  AbstractField.prototype.createWrapperGrid = function createWrapperGrid() {
     var grid = document.createElement("div");
     grid.classList.add("o-grid__cell");
     return grid;
-  }
-
-  return {
-    "createWrapperSpan": createWrapperSpan,
-    "createLabel": createLabel,
-    "createWrapperGrid": createWrapperGrid
   };
-}(); // Wrapped in execution call because we need revealing module pattern to activate.
+
+  return AbstractField;
+}();
+
+exports.default = AbstractField;
+
 
 module.exports = AbstractField;
 
@@ -4044,19 +4019,19 @@ var InputFactory = function () {
     var element = undefined;
     switch (inputDescription.type.toLowerCase()) {
       case "text":
-        return new _TextField2.default(inputDescription);
+        return new _TextField2.default().build(inputDescription);
         break;
       case "textarea":
-        return new _TextAreaField2.default(inputDescription);
+        return new _TextAreaField2.default().build(inputDescription);
         break;
       case "password":
-        return new _PasswordField2.default(inputDescription);
+        return new _PasswordField2.default().build(inputDescription);
         break;
       case "checkbox":
-        return new _CheckField2.default(inputDescription);
+        return new _CheckField2.default().build(inputDescription);
         break;
       case "select":
-        return new _SelectField2.default(inputDescription);
+        return new _SelectField2.default().build(inputDescription);
         break;
       default:
         console.error("Unable to create an element.");
@@ -4079,56 +4054,75 @@ module.exports = InputFactory;
 "use strict";
 
 
-var _extend = __webpack_require__(15);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _AbstractField = __webpack_require__(16);
+var _AbstractField2 = __webpack_require__(16);
 
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
+var _AbstractField3 = _interopRequireDefault(_AbstractField2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
-  Create a text input.
-*/
-var TextField = function TextField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_text";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElement(inputDescription.id);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Create a text input.
+ */
+var TextField = function (_AbstractField) {
+  _inherits(TextField, _AbstractField);
+
+  /**
+   * Default constructor.
+   */
+  function TextField() {
+    _classCallCheck(this, TextField);
+
+    return _possibleConstructorReturn(this, _AbstractField.call(this));
   }
 
   /**
-    Create the input element.
-     @param id Id of the element being created.
-    @return Input element.
-  */
-  function createElement(id) {
+   * Create the input element.
+   *
+   * @param id Id of the element being created.
+   * @return Input element.
+   */
+
+
+  TextField.prototype.createElement = function createElement(id) {
     var input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", id);
     input.setAttribute("name", id);
     input.classList.add("c-field");
     return input;
-  }
+  };
 
-  return __construct(inputDescription); // Call the constructor.
-};
+  TextField.prototype.build = function build(inputDescription) {
+    var specialClass = "dynamic_text";
+    var wrapper = this.createWrapperSpan(specialClass);
+    var label = this.createLabel(inputDescription.id, inputDescription.label);
+    var element = this.createElement(inputDescription.id);
+    var labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    var inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  };
+
+  return TextField;
+}(_AbstractField3.default);
+
+exports.default = TextField;
+
 
 module.exports = TextField;
 
@@ -4139,55 +4133,74 @@ module.exports = TextField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(16);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
+var _AbstractField2 = __webpack_require__(16);
 
-var _extend = __webpack_require__(15);
+var _AbstractField3 = _interopRequireDefault(_AbstractField2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
-  Create a text_area input.
-*/
-var TextAreaField = function TextAreaField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_textarea";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElement(inputDescription.id);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Create a text_area input.
+ */
+var TextAreaField = function (_AbstractField) {
+  _inherits(TextAreaField, _AbstractField);
+
+  /**
+   * Default constructor.
+   */
+  function TextAreaField() {
+    _classCallCheck(this, TextAreaField);
+
+    return _possibleConstructorReturn(this, _AbstractField.call(this));
   }
 
   /**
-    Create the input element.
-     @param id Id of the element being created.
-    @return Input element.
-  */
-  function createElement(id) {
+   * Create the input element.
+   *
+   * @param id Id of the element being created.
+   * @return Input element.
+   */
+
+
+  TextAreaField.prototype.createElement = function createElement(id) {
     var input = document.createElement("textarea");
     input.setAttribute("id", id);
     input.setAttribute("name", id);
     input.classList.add("c-field");
     return input;
-  }
+  };
 
-  return __construct(inputDescription); // Call the constructor.
-};
+  TextAreaField.prototype.build = function build(inputDescription) {
+    var specialClass = "dynamic_textarea";
+    var wrapper = this.createWrapperSpan(specialClass);
+    var label = this.createLabel(inputDescription.id, inputDescription.label);
+    var element = this.createElement(inputDescription.id);
+    var labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    var inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  };
+
+  return TextAreaField;
+}(_AbstractField3.default);
+
+exports.default = TextAreaField;
+
 
 module.exports = TextAreaField;
 
@@ -4198,56 +4211,75 @@ module.exports = TextAreaField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(16);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
+var _AbstractField2 = __webpack_require__(16);
 
-var _extend = __webpack_require__(15);
+var _AbstractField3 = _interopRequireDefault(_AbstractField2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
   Create a password input.
 */
-var PasswordField = function PasswordField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_password";
+var PasswordField = function (_AbstractField) {
+  _inherits(PasswordField, _AbstractField);
 
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElement(inputDescription.id);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+  /**
+   * Default constructor.
+   */
+  function PasswordField() {
+    _classCallCheck(this, PasswordField);
+
+    return _possibleConstructorReturn(this, _AbstractField.call(this));
   }
 
   /**
-    Create the input element.
-     @param id Id of the element being created.
-    @return Input element.
-  */
-  function createElement(id) {
+   * Create the input element.
+   *
+   * @param id Id of the element being created.
+   * @return Input element.
+   */
+
+
+  PasswordField.prototype.createElement = function createElement(id) {
     var input = document.createElement("input");
     input.setAttribute("type", "password");
     input.setAttribute("id", id);
     input.setAttribute("name", id);
     input.classList.add("c-field");
     return input;
-  }
+  };
 
-  return __construct(inputDescription); // Call the constructor.
-};
+  PasswordField.prototype.build = function build(inputDescription) {
+    var specialClass = "dynamic_password";
+    var wrapper = this.createWrapperSpan(specialClass);
+    var label = this.createLabel(inputDescription.id, inputDescription.label);
+    var element = this.createElement(inputDescription.id);
+    var labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    var inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  };
+
+  return PasswordField;
+}(_AbstractField3.default);
+
+exports.default = PasswordField;
+
 
 module.exports = PasswordField;
 
@@ -4258,48 +4290,48 @@ module.exports = PasswordField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(16);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
+var _AbstractField2 = __webpack_require__(16);
 
-var _extend = __webpack_require__(15);
+var _AbstractField3 = _interopRequireDefault(_AbstractField2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
   Create a select input.
 */
-var SelectField = function SelectField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_select";
+var SelectField = function (_AbstractField) {
+  _inherits(SelectField, _AbstractField);
 
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElements(inputDescription.id, inputDescription.values, inputDescription.multiple);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+  /**
+   * Default constructor.
+   */
+  function SelectField() {
+    _classCallCheck(this, SelectField);
+
+    return _possibleConstructorReturn(this, _AbstractField.call(this));
   }
 
   /**
-    Create the input element.
-     @param id Id of selectbox.
-    @param listOfValues List of options.
-    @param multiple Boolean representing if it is a multiple select box.
-    @return Selectbox.
-  */
-  function createElements(id) {
+   * Create the input element.
+   *
+   * @param id Id of selectbox.
+   * @param listOfValues List of options.
+   * @param multiple Boolean representing if it is a multiple select box.
+   * @return Selectbox.
+   */
+
+
+  SelectField.prototype.createElements = function createElements(id) {
     var listOfValues = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     var multiple = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
@@ -4322,10 +4354,29 @@ var SelectField = function SelectField(inputDescription) {
       select.appendChild(option);
     }
     return select;
-  }
+  };
 
-  return __construct(inputDescription); // Call the constructor.
-};
+  SelectField.prototype.build = function build(inputDescription) {
+    var specialClass = "dynamic_select";
+    var wrapper = this.createWrapperSpan(specialClass);
+    var label = this.createLabel(inputDescription.id, inputDescription.label);
+    var element = this.createElements(inputDescription.id, inputDescription.values, inputDescription.multiple);
+    var labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    var inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  };
+
+  return SelectField;
+}(_AbstractField3.default);
+
+exports.default = SelectField;
+
 
 module.exports = SelectField;
 
@@ -4336,47 +4387,47 @@ module.exports = SelectField;
 "use strict";
 
 
-var _AbstractField = __webpack_require__(16);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _AbstractField2 = _interopRequireDefault(_AbstractField);
+var _AbstractField2 = __webpack_require__(16);
 
-var _extend = __webpack_require__(15);
+var _AbstractField3 = _interopRequireDefault(_AbstractField2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
   Create a check input.
 */
-var CheckField = function CheckField(inputDescription) {
-  (0, _extend.extend)(this, _AbstractField2.default);
-  var createWrapperSpan = this.createWrapperSpan;
-  var createLabel = this.createLabel;
-  var createWrapperGrid = this.createWrapperGrid;
-  var specialClass = "dynamic_check";
+var CheckField = function (_AbstractField) {
+  _inherits(CheckField, _AbstractField);
 
-  /** Default constructor. */
-  function __construct(inputDescription) {
-    var wrapper = createWrapperSpan(specialClass);
-    var label = createLabel(inputDescription.id, inputDescription.label);
-    var element = createElements(inputDescription.id, inputDescription.values);
-    var labelGrid = createWrapperGrid();
-    labelGrid.classList.add("label");
-    labelGrid.classList.add("o-grid__cell--width-30");
-    var inputGrid = createWrapperGrid();
-    labelGrid.appendChild(label);
-    inputGrid.appendChild(element);
-    wrapper.appendChild(labelGrid);
-    wrapper.appendChild(inputGrid);
-    return wrapper;
+  /**
+   * Default constructor.
+   */
+  function CheckField(inputDescription) {
+    _classCallCheck(this, CheckField);
+
+    return _possibleConstructorReturn(this, _AbstractField.call(this));
   }
 
   /**
-    Create the input element.
-     @param id ID of the field.
-    @param listOfValues Values to be used as checkboxes.
-    @return checkbox span.
-  */
-  function createElements(id, listOfValues) {
+   * Create the input element.
+   *
+   * @param id ID of the field.
+   * @param listOfValues Values to be used as checkboxes.
+   * @return checkbox span.
+   */
+
+
+  CheckField.prototype.createElements = function createElements(id, listOfValues) {
     var wrapper = document.createElement("span");
     for (var i = 0; i < listOfValues.length; i++) {
       var item = listOfValues[i];
@@ -4389,10 +4440,29 @@ var CheckField = function CheckField(inputDescription) {
       wrapper.appendChild(textNode);
     }
     return wrapper;
-  }
+  };
 
-  return __construct(inputDescription); // Call the constructor.
-};
+  CheckField.prototype.build = function build(inputDescription) {
+    var specialClass = "dynamic_check";
+    var wrapper = this.createWrapperSpan(specialClass);
+    var label = this.createLabel(inputDescription.id, inputDescription.label);
+    var element = this.createElements(inputDescription.id, inputDescription.values);
+    var labelGrid = this.createWrapperGrid();
+    labelGrid.classList.add("label");
+    labelGrid.classList.add("o-grid__cell--width-30");
+    var inputGrid = this.createWrapperGrid();
+    labelGrid.appendChild(label);
+    inputGrid.appendChild(element);
+    wrapper.appendChild(labelGrid);
+    wrapper.appendChild(inputGrid);
+    return wrapper;
+  };
+
+  return CheckField;
+}(_AbstractField3.default);
+
+exports.default = CheckField;
+
 
 module.exports = CheckField;
 
