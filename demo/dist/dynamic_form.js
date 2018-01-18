@@ -3993,6 +3993,10 @@ this.root.innerHTML = opts.content;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _TextField = __webpack_require__(22);
 
 var _TextField2 = _interopRequireDefault(_TextField);
@@ -4015,17 +4019,18 @@ var _CheckField2 = _interopRequireDefault(_CheckField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /**
   Creates inputs based on descriptions.
 */
-var InputFactory = function InputFactory() {
-  function __construct() {}
+var InputFactory = function () {
 
-  function addDefaults(element, id) {
-    element.setAttribute("id", id);
-    element.setAttribute("name", id);
-    element.classList.add("c-field");
-    return element;
+  /**
+   * Default constructor.
+   */
+  function InputFactory() {
+    _classCallCheck(this, InputFactory);
   }
 
   /**
@@ -4033,7 +4038,9 @@ var InputFactory = function InputFactory() {
      @param inputDescription Json object description of object.
     @return Created input.
   */
-  function build(inputDescription) {
+
+
+  InputFactory.prototype.build = function build(inputDescription) {
     var element = undefined;
     switch (inputDescription.type.toLowerCase()) {
       case "text":
@@ -4055,11 +4062,13 @@ var InputFactory = function InputFactory() {
         console.error("Unable to create an element.");
         break;
     }
-  }
+  };
 
-  __construct();
-  return { "build": build };
-};
+  return InputFactory;
+}();
+
+exports.default = InputFactory;
+
 
 module.exports = InputFactory;
 

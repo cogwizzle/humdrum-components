@@ -7,15 +7,12 @@ import CheckField from '../form_elements/CheckField';
 /**
   Creates inputs based on descriptions.
 */
-var InputFactory = function(){
-  function __construct(){}
+export default class InputFactory {
 
-  function addDefaults(element, id){
-    element.setAttribute("id", id);
-    element.setAttribute("name", id);
-    element.classList.add("c-field");
-    return element;
-  }
+  /**
+   * Default constructor.
+   */
+  constructor() {}
 
   /**
     Build an input.
@@ -23,8 +20,8 @@ var InputFactory = function(){
     @param inputDescription Json object description of object.
     @return Created input.
   */
-  function build(inputDescription){
-    var element = undefined;
+  build(inputDescription) {
+    let element = undefined;
     switch(inputDescription.type.toLowerCase()){
       case "text":
         return new TextField(inputDescription);
@@ -46,9 +43,6 @@ var InputFactory = function(){
         break;
     }
   }
-
-  __construct();
-  return {"build" : build};
-};
+}
 
 module.exports = InputFactory;
