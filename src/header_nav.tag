@@ -4,7 +4,7 @@
     <li id="page_heading_text" class="c-nav__content" if="{opts.page_heading}">{opts.page_heading}</li>
     <span class="navspan" if="{opts.links}">
       <li class="icon c-nav__item--right" onclick={ toggleResponsive }>&#9776;</li>
-      <li each="{opts.links}" class="c-nav__item c-nav__item--right" uri="{uri}" onclick="{goto}">{text}</li>
+      <li each="{opts.links}" class="c-nav__item c-nav__item--right { 'c-nav__item--active' : window.location.href.includes(uri) }" uri="{uri}" onclick="{goto}">{text}</li>
     </span>
   </ul>
   <style>
@@ -78,6 +78,8 @@
   </style>
 
   <script>
+    import 'blaze/dist/blaze.min.css'
+
     let _component = this;
 
     /**
@@ -92,7 +94,7 @@
     /**
      * Toggle between adding and removing the "responsive" class to topnav.
      */
-    toggleResponsive() {
+    this.toggleResponsive = (event) => {
       var titleBar = _component.refs.page_heading;
 
       if (titleBar.className == "c-nav c-nav--inline") {
@@ -105,7 +107,7 @@
     /**
      * Go to event, used for redirecting to a page.
      */
-    goto(event){
+    this.goto = (event) => {
       var uri = event.target.getAttribute('uri');
       window.location.href = uri;
       _component.toggleResponsive();
